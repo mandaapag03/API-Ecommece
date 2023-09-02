@@ -1,0 +1,14 @@
+SSS05: O sistema deve permitir o cadastro, alteracao, listagem, inativacao de clientes.
+SSS01: O sistema deve permitir o cadastro, alteracao e inativacao de produtos
+SSS02: O sistema deve permitir o cadastro de categorias
+SSS08: O sistema deve permitir a visualização do catálogo de produtos do site
+SSS10: O sistema deve permitir adicionar itens ao carrinho de compras
+SSS04: O sistema deve permitir o adicionar, alterar e inativar de formas de envio
+SSS11: O sistema deve permitir cadastro de dados de endereço para entrega
+SSS12: O sistema deve permitir pagamento por boleto, pix, cartão de crédito ou débito.
+SSS13: O sistema deve permitir o acompanhamento da compra do cliente na área de pedidos.
+SSS09: O sistema deve permitir ao comprador salvar produtos na lista de favoritos
+SSS06: O sistema deve permitir o cadastro, exclusão e gerenciamento de promoções
+SSS03: O sistema deve permitir a visualização das métricas do site através de relatórios
+personalizados (6 meses): visitantes, ticket médio, qtd de vendas, receita, % de conversão
+(cruzando informações com o google analytics)

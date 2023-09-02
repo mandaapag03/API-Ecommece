@@ -1,0 +1,23 @@
+Comandos docker de PostgreSQL + Docker: https://renatogroffe.medium.com/postgresql-docker-executando-uma-inst%C3%A2ncia-e-o-pgadmin-4-a-partir-de-containers-ad783e85b1a4
+
+// Obtendo as imagens necessárias
+docker pull postgres
+docker pull dpage/pgadmin4
+
+//Criando uma network para execução dos containers
+docker network create --driver bridge postgres-network
+
+//Criando um container para executar uma instância do PostgreSQL
+docker run --name db-ecommerce-postgres --network=postgres-network -e "POSTGRES_PASSWORD=Postgres2023!" -p 5432:5432 -v /home/amanda/full-stack/PostgreSQL:/var/lib/postgresql/data -d postgres
+
+// Criando um container para execução do pgAdmin 4
+docker run --name db-ecommerce-pgadmin --network=postgres-network -p 15432:80 -e "PGADMIN_DEFAULT_EMAIL=amanda.pagani@aluno.faculdadeimpacta.com.br" -e "PGADMIN_DEFAULT_PASSWORD=PgAdmin2023!" -d dpage/pgadmin4
+
+
+// Connection: (Lab)
+Name: db-ecommerce
+Host: db-ecommerce-postgres
+Port: 5432
+Maintenance database: postgres
+Username: postgres
+Password: Postgres2023!
