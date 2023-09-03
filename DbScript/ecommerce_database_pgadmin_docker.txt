@@ -17,8 +17,8 @@ docker run --name db-ecommerce-pgadmin --network=postgres-network -p 15432:80 -e
 docker run --name db-pet-postgres --network=postgres-network -e "POSTGRES_PASSWORD=Postgres2023!" -p 5432:5432 -v /home/amanda/full-stack/PostgreSQL:/var/lib/postgresql/data -d postgres
 
 // Connection: (Lab)
-Name: db-pet
-Host: db-pet-postgres
+Name: db-ecommerce
+Host: db-ecommerce-postgres
 Port: 5432
 Maintenance database: postgres
 Username: postgres
