@@ -1,0 +1,48 @@
+-- lista de tabelas
+dbpet.tipo_pessoa
+dbpet.endereco
+dbpet.usuario
+dbpet.pessoa_fisica
+dbpet.inscricao_estadual
+dbpet.pessoa_juridica
+dbpet.cliente
+dbpet.administrador
+dbpet.forma_envio
+dbpet.categoria
+dbpet.produto
+dbpet.status_pedido
+dbpet.pedido
+dbpet.item_pedido
+dbpet.promocao
+dbpet.promocoes_atuais
+dbpet.forma_pagamento
+dbpet.pagamento
+dbpet.parcelamento
+dbpet.carrinho
+dbpet.avaliacao
+dbpet.estoque
+
+-- drop table
+
+drop table dbpet.pagamento;
+drop table dbpet.avaliacao;
+drop table dbpet.carrinho;
+drop table dbpet.promocoes_atuais;
+drop table dbpet.item_pedido;
+drop table dbpet.pessoa_juridica;
+drop table dbpet.administrador;
+drop table dbpet.cliente;
+drop table dbpet.pessoa_fisica;
+drop table dbpet.usuario;
+drop table dbpet.pedido;
+drop table dbpet.estoque;
+drop table dbpet.produto;
+drop table dbpet.parcelamento;
+drop table dbpet.categoria;
+drop table dbpet.tipo_pessoa;
+drop table dbpet.endereco;
+drop table dbpet.inscricao_estadual;
+drop table dbpet.forma_envio;
+drop table dbpet.status_pedido;
+drop table dbpet.promocao;
+drop table dbpet.forma_pagamento;
