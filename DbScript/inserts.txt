@@ -1,5 +1,4 @@
-insert into dbpet.tipo_pessoa (descricao) values ('Pessoa Física'), ('Pessoa Jurídica');
-insert into dbpet.inscricao_estadual (descricao) values ('Contribuinte ICMS'), ('Não contribuinte');
+insert into dbpet.tipo_usuario (descricao) values ('Pessoa Física'), ('Pessoa Jurídica');
 insert into dbpet.forma_envio (descricao, valor_frete) values 
 ('Sedex', 10.0), 
 ('Transportadora Aurora', 15.0),
@@ -37,17 +36,3 @@ insert into dbpet.forma_pagamento (descricao) values
 ('Boleto bancário'),
 ('Cartão de crédito'),
 ('Cartão de débito');
-
-insert into dbpet.parcelamento (qtd_parcelas, taxa_juros) values 
-(1, 0.0),
-(2, 0.0),
-(3, 0.0),
-(4, 0.0),
-(5, 0.0),
-(6, 2.68),
-(7, 2.68),
-(8, 3.75),
-(9, 3.75),
-(10, 4.84),
-(11, 4.84),
-(12, 4.84);
