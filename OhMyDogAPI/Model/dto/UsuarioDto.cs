@@ -12,7 +12,7 @@ namespace OhMyDogAPI.Model.dto
         public int id_endereco { get; set; }
         public int id_tipo_usuario { get; set; }
         public string? nome_completo { get; set; }
-        public string? cpf { get; set; }
+        public string cpf { get; set; }
         public string? telefone { get; set; }
         public string? email { get; set; }
         public string? senha { get; set; }

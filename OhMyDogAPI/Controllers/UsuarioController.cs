@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OhMyDogAPI.Model;
+using OhMyDogAPI.Model.dto;
 using OhMyDogAPI.Repository;
 
 namespace OhMyDogAPI.Controllers
@@ -9,10 +10,10 @@ namespace OhMyDogAPI.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
-        UsuariosRepository _usuariosRepository;
+        UsuarioRepository _usuarioRepository;
         public UsuarioController()
         {
-            _usuariosRepository = new UsuariosRepository();
+            _usuarioRepository = new UsuarioRepository();
         }
 
         [HttpGet]
@@ -20,7 +21,7 @@ namespace OhMyDogAPI.Controllers
         {
             try
             {
-                return Ok(_usuariosRepository.GetAll());
+                return Ok(_usuarioRepository.GetAll());
             }
             catch (Exception ex)
             {
@@ -29,12 +30,26 @@ namespace OhMyDogAPI.Controllers
 
         }
 
-        [HttpGet("{id}")]
-        public IActionResult BuscarUsuarioPorId(int id)
+        [HttpGet("buscar")]
+        public IActionResult BuscarUsuario(int id, string? cpf = null) => id == 0 ? BuscarUsuarioPorCpf(cpf) : BuscarUsuarioPorId(id);
+
+        private IActionResult BuscarUsuarioPorId(int id)
         {
             try
             {
-                return Ok(_usuariosRepository.GetById(id));
+                return Ok(_usuarioRepository.GetById(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        private IActionResult BuscarUsuarioPorCpf(string cpf)
+        {
+            try
+            {
+                return Ok(_usuarioRepository.GetByCpf(cpf));
             }
             catch (Exception ex)
             {
@@ -45,7 +60,27 @@ namespace OhMyDogAPI.Controllers
         [HttpPost("cadastro")]
         public IActionResult Cadastrar(Usuario usuario)
         {
-            return Ok(_usuariosRepository.Create(usuario));
+            return Ok(_usuarioRepository.Create(usuario));
+        }
+
+        [HttpPut]
+        public IActionResult Atualizar (Usuario usuario)
+        {
+            return Ok(_usuarioRepository.Update(usuario));
+        }
+
+        [HttpPost("login")]
+        public IActionResult Login(Credenciais credenciais)
+        {
+            try
+            {
+                var result = _usuarioRepository.Login(credenciais);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

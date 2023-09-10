@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
+using OhMyDogAPI.Data;
 using OhMyDogAPI.Model;
 using OhMyDogAPI.Model.Interfaces;
-using OhMyDogAPI.Repository.Context;
 
 namespace OhMyDogAPI.Repository
 {

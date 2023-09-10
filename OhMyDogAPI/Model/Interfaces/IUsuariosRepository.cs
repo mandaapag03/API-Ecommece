@@ -6,9 +6,9 @@ namespace OhMyDogAPI.Model.Interfaces
     {
         List<Usuario> GetAll();
         Usuario? GetById(int id);
+        Usuario? GetByCpf(string cpf);
         Usuario Create(Usuario usuario);
         Usuario Login(Credenciais credenciais);
         Usuario Update(Usuario usuario);
-        Usuario Disable(int id);
     }
 }

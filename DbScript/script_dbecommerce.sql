@@ -56,10 +56,11 @@ create table if not exists  dbpet.categoria(
 create table if not exists  dbpet.produto(
 	id serial primary key,
 	id_categoria smallint not null,
-	nome_produto varchar(60) not null unique,
-	descricao varchar(50),
+	nome_produto varchar(150) not null unique,
+	descricao text,
 	foto text,
 	preco_unitario real not null,
+	is_active bool not null default false,
 	constraint produto_id_categoria_fk foreign key (id_categoria) REFERENCES dbpet.categoria(id),
 	constraint produto_preco_ck check (preco_unitario > 0)
 );

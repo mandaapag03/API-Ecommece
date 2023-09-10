@@ -1,4 +1,4 @@
-insert into dbpet.tipo_usuario (descricao) values ('Administrador'), ('Cliente');
+insert into dbpet.tipo_usuario (descricao) values ('Pessoa Física'), ('Pessoa Jurídica');
 insert into dbpet.forma_envio (descricao, valor_frete) values 
 ('Sedex', 10.0), 
 ('Transportadora Aurora', 15.0),
@@ -23,11 +23,12 @@ insert into dbpet.categoria (id_subcategoria, nome_categoria) values
 (4, 'Porta Rações e Acessórios');
 
 insert into dbpet.status_pedido (descricao) values 
-('Pendente'),
-('Processando pagamento'),
 ('Preparando o pedido'), 
+('Nota fiscal emitida'),
 ('Enviado para a transportadora'),
-('Enviado para a entrega'),
+('Recebido pela transportadora'),
+('Mercadoria em trânsito'),
+('Mercadoria em rota de entrega'),
 ('Pedido entregue');
 
 insert into dbpet.forma_pagamento (descricao) values 
@@ -35,3 +36,10 @@ insert into dbpet.forma_pagamento (descricao) values
 ('Boleto bancário'),
 ('Cartão de crédito'),
 ('Cartão de débito');
+
+insert into dbpet.produto (id_categoria, nome_produto, descricao, foto, preco_unitario, is_active) 
+values (5,
+		'Ração Pedigree Nutrição Essencial Carne para Cães Adultos - Leve 15kg e Pague 13,5kg',
+		'Nutrição Essencial Carne para Cães Adultos - Leve 15kg e Pague 13,5kg',
+		'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSKzW7nMYEPvS49WOB-KthI8LKJZG8m5cghGk4LyDSe84Y3SOpvEMWJK0iZR60Y9ERVBQCktG-TbLSfQlfWF784yPRUDY8sjQbbc7j3NxcGVeCV3f_PEyD9ujFnBbvzB6qu7dxq5io4&usqp=CAc',
+	   	154.99, true);

@@ -1,13 +1,9 @@
-﻿using OhMyDogAPI.Repository.Context;
-using System.Text.Json.Serialization;
-
-namespace OhMyDogAPI.Model
+﻿namespace OhMyDogAPI.Model
 {
     public class Usuario
     {
-        [JsonIgnore]
         public int Id { get; set; }
-        public string? Cpf { get; set; }
+        public string Cpf { get; set; }
         public string? NomeCompleto { get; set; }
         public string? Email { get; set; }
         public string? Senha { get; set; }
