@@ -10,5 +10,7 @@ namespace OhMyDogAPI.Model.Interfaces
         Usuario Create(Usuario usuario);
         Usuario Login(Credenciais credenciais);
         Usuario Update(Usuario usuario);
+        Usuario Disable(int id);
+        Usuario Enable(int id);
     }
 }

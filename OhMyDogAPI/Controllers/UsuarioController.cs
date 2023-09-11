@@ -69,6 +69,18 @@ namespace OhMyDogAPI.Controllers
             return Ok(_usuarioRepository.Update(usuario));
         }
 
+        [HttpPut("inativar/{id}")]
+        public IActionResult Inativar(int id)
+        {
+            return Ok(_usuarioRepository.Disable(id));
+        }
+
+        [HttpPut("reativar/{id}")]
+        public IActionResult Reativar(int id)
+        {
+            return Ok(_usuarioRepository.Enable(id));
+        }
+
         [HttpPost("login")]
         public IActionResult Login(Credenciais credenciais)
         {

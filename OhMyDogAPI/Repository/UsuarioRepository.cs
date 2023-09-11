@@ -100,6 +100,29 @@ namespace OhMyDogAPI.Repository
 
             return GetById(usuario.Id);
         }
+        public Usuario Disable(int id)
+        {
+            var oldUser = _context.Usuarios.FirstOrDefault(u => u.id == id);
+            if (oldUser == null) { throw new ArgumentNullException("Usuário não encontrado"); }
+
+            oldUser.is_active = false;
+            _context.Usuarios.Update(oldUser);
+            _context.SaveChanges();
+
+            return GetById(id);
+        }
+
+        public Usuario Enable(int id)
+        {
+            var oldUser = _context.Usuarios.FirstOrDefault(u => u.id == id);
+            if (oldUser == null) { throw new ArgumentNullException("Usuário não encontrado"); }
+
+            oldUser.is_active = true;
+            _context.Usuarios.Update(oldUser);
+            _context.SaveChanges();
+
+            return GetById(id);
+        }
         private UsuarioDto ConvertUsuarioToDto(Usuario usuario)
         {
             var dto = new UsuarioDto()

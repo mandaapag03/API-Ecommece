@@ -74,5 +74,19 @@ namespace OhMyDogAPI.Repository
 
             return GetById(id);
         }
+
+        public Produto Enable(int id)
+        {
+            var oldProduto = _context.Produtos.FirstOrDefault(p => p.Id == id);
+            if (oldProduto == null)
+                throw new Exception("Produto não encontrado");
+
+            oldProduto.IsActive = true;
+
+            _context.Produtos.Update(oldProduto);
+            _context.SaveChanges();
+
+            return GetById(id);
+        }
     }
 }

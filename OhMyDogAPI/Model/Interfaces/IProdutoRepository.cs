@@ -7,5 +7,6 @@
         Produto Create(Produto produto);
         Produto Update(Produto produto);
         Produto Disable(int id);
+        Produto Enable(int id);
     }
 }

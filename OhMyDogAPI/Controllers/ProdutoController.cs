@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 using OhMyDogAPI.Model;
+using OhMyDogAPI.Model.Interfaces;
 using OhMyDogAPI.Repository;
 
 namespace OhMyDogAPI.Controllers
@@ -69,7 +70,7 @@ namespace OhMyDogAPI.Controllers
         }
 
         [HttpPut("inativar/{id}")]
-        public IActionResult AlterarProduto(int id)
+        public IActionResult Inativar(int id)
         {
             try
             {
@@ -80,5 +81,12 @@ namespace OhMyDogAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPut("reativar/{id}")]
+        public IActionResult Reativar(int id)
+        {
+            return Ok(_produtoRepository.Enable(id));
+        }
+
     }
 }
