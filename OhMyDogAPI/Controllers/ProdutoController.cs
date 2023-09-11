@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
+using OhMyDogAPI.Model;
 using OhMyDogAPI.Repository;
 
 namespace OhMyDogAPI.Controllers
@@ -27,5 +28,57 @@ namespace OhMyDogAPI.Controllers
             return Ok(_produtoRepository.GetById(id));
         }
 
+        [HttpPost("cadastrar")]
+        public IActionResult CadastrarProduto(Produto produto)
+        {
+            try
+            {
+                return Ok(_produtoRepository.Create(produto));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }   
+        }
+
+        [HttpPut("alterar/{id}")]
+        public IActionResult AlterarProduto(Produto produto, int id)
+        {
+            try
+            {
+                produto.Id = id;
+                return Ok(_produtoRepository.Update(produto));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("alterar")]
+        public IActionResult AlterarProduto(Produto produto)
+        {
+            try
+            {
+                return Ok(_produtoRepository.Update(produto));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("inativar/{id}")]
+        public IActionResult AlterarProduto(int id)
+        {
+            try
+            {
+                return Ok(_produtoRepository.Disable(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

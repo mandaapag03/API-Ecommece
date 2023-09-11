@@ -20,6 +20,6 @@ namespace OhMyDogAPI.Model
         public int CategoriaId { get; set; }
 
         //Navigation Properties
-        public Categoria Categoria { get; set; } 
+        public Categoria? Categoria { get; set; } 
     }
 }

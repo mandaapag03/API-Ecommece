@@ -34,18 +34,45 @@ namespace OhMyDogAPI.Repository
 
         public Produto Create(Produto produto)
         {
-            throw new NotImplementedException();
+            _context.Produtos.Add(produto);
+            _context.SaveChanges();
+
+            var result = _context.Produtos
+                .Include (p => p.Categoria)
+                .FirstOrDefault(p => p.Nome == produto.Nome);
+            if (result == null) { throw new Exception("Não foi possível cadastrar seu produto, tente mais tarde.");  }
+            return result;
         }
         public Produto Update(Produto produto)
         {
-            throw new NotImplementedException();
+            var oldProduto = _context.Produtos.FirstOrDefault(p => p.Id == produto.Id);
+            if (oldProduto == null)
+                throw new Exception("Produto não encontrado");
+
+            oldProduto.Nome = produto.Nome;
+            oldProduto.PrecoUnitario = produto.PrecoUnitario;
+            oldProduto.Descricao = produto.Descricao;
+            oldProduto.CategoriaId = produto.CategoriaId;
+            oldProduto.Foto = produto.Foto;
+            
+            _context.Produtos.Update(oldProduto);
+            _context.SaveChanges();
+
+            return GetById(oldProduto.Id);
         }
 
         public Produto Disable(int id)
         {
-            throw new NotImplementedException();
+            var oldProduto = _context.Produtos.FirstOrDefault(p => p.Id == id);
+            if (oldProduto == null)
+                throw new Exception("Produto não encontrado");
+
+            oldProduto.IsActive = false;
+
+            _context.Produtos.Update(oldProduto);
+            _context.SaveChanges();
+
+            return GetById(id);
         }
-
-
     }
 }
