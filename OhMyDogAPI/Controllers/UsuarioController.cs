@@ -30,22 +30,8 @@ namespace OhMyDogAPI.Controllers
 
         }
 
-        [HttpGet("buscar")]
-        public IActionResult BuscarUsuario(int id, string? cpf = null) => id == 0 ? BuscarUsuarioPorCpf(cpf) : BuscarUsuarioPorId(id);
-
-        private IActionResult BuscarUsuarioPorId(int id)
-        {
-            try
-            {
-                return Ok(_usuarioRepository.GetById(id));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        private IActionResult BuscarUsuarioPorCpf(string cpf)
+        [HttpGet("buscar/{cpf}")]
+        public IActionResult BuscarUsuario(string cpf)
         {
             try
             {
