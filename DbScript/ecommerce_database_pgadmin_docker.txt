@@ -11,10 +11,8 @@ docker network create --driver bridge postgres-network
 docker run --name db-ecommerce-postgres --network=postgres-network -e "POSTGRES_PASSWORD=Postgres2023!" -p 5432:5432 -v /home/amanda/full-stack/PostgreSQL:/var/lib/postgresql/data -d postgres
 
 // Criando um container para execução do pgAdmin 4
-docker run --name db-ecommerce-pgadmin --network=postgres-network -p 15432:80 -e "PGADMIN_DEFAULT_EMAIL=amanda.pagani@aluno.faculdadeimpacta.com.br" -e "PGADMIN_DEFAULT_PASSWORD=PgAdmin2023!" -d dpage/pgadmin4
+docker run --name db-quarto-semestre-pgadmin --network=postgres-network -p 15432:80 -e "PGADMIN_DEFAULT_EMAIL=amanda.pagani@aluno.faculdadeimpacta.com.br" -e "PGADMIN_DEFAULT_PASSWORD=PgAdmin2023!" -d dpage/pgadmin4
 
---v2
-docker run --name db-pet-postgres --network=postgres-network -e "POSTGRES_PASSWORD=Postgres2023!" -p 5432:5432 -v /home/amanda/full-stack/PostgreSQL:/var/lib/postgresql/data -d postgres
 
 // Connection: (Lab)
 Name: db-ecommerce
