@@ -46,25 +46,53 @@ namespace OhMyDogAPI.Controllers
         [HttpPost("cadastro")]
         public IActionResult Cadastrar(Usuario usuario)
         {
-            return Ok(_usuarioRepository.Create(usuario));
+            try
+            {
+                return Ok(_usuarioRepository.Create(usuario));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut]
         public IActionResult Atualizar (Usuario usuario)
         {
-            return Ok(_usuarioRepository.Update(usuario));
+            try
+            {
+                return Ok(_usuarioRepository.Update(usuario));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut("inativar/{id}")]
         public IActionResult Inativar(int id)
         {
-            return Ok(_usuarioRepository.Disable(id));
+            try
+            {
+                return Ok(_usuarioRepository.Disable(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut("reativar/{id}")]
         public IActionResult Reativar(int id)
         {
-            return Ok(_usuarioRepository.Enable(id));
+            try
+            {
+                return Ok(_usuarioRepository.Enable(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPost("login")]
@@ -72,8 +100,7 @@ namespace OhMyDogAPI.Controllers
         {
             try
             {
-                var result = _usuarioRepository.Login(credenciais);
-                return Ok(result);
+                return Ok(_usuarioRepository.Login(credenciais));
             }
             catch (Exception ex)
             {

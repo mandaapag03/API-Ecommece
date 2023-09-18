@@ -26,7 +26,14 @@ namespace OhMyDogAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult BuscarProdutoPorId(int id)
         {
-            return Ok(_produtoRepository.GetById(id));
+            try
+            {
+                return Ok(_produtoRepository.GetById(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPost("cadastrar")]
@@ -85,7 +92,14 @@ namespace OhMyDogAPI.Controllers
         [HttpPut("reativar/{id}")]
         public IActionResult Reativar(int id)
         {
-            return Ok(_produtoRepository.Enable(id));
+            try
+            {
+                return Ok(_produtoRepository.Enable(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
     }
