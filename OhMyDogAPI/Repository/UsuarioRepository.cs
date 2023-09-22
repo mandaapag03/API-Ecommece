@@ -72,7 +72,7 @@ namespace OhMyDogAPI.Repository
             var userParamDto = ConvertUsuarioToDto(usuario);
             if(userParamDto == null) { throw new ArgumentNullException("Usuário não encontrado"); }
             
-            var oldUser = _context.Usuarios.FirstOrDefault(u => u.cpf == userParamDto.cpf);
+            var oldUser = _context.Usuarios.FirstOrDefault(u => u.id == userParamDto.id);
             if (oldUser == null) { throw new ArgumentNullException("Usuário não encontrado"); }
 
             oldUser.telefone = userParamDto.telefone;
