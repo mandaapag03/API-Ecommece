@@ -1,4 +1,4 @@
-insert into dbpet.tipo_usuario (descricao) values ('Pessoa Física'), ('Pessoa Jurídica');
+insert into dbpet.tipo_usuario (descricao) values ('Admin'), ('Cliente');
 insert into dbpet.forma_envio (descricao, valor_frete) values 
 ('Sedex', 10.0), 
 ('Transportadora Aurora', 15.0),

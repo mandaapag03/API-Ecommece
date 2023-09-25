@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using OhMyDogAPI.Data;
 using OhMyDogAPI.Model;
 using OhMyDogAPI.Model.Interfaces;
@@ -15,19 +16,45 @@ namespace OhMyDogAPI.Repository
 
         public Endereco? Create(Endereco endereco)
         {
-            var result = _context.Enderecos.Add(endereco);
-            _context.SaveChanges();
-
-            if (result == null)
+            try
             {
-                throw new Exception("Não foi possível cadastrar o usuário");
+                var user = _context.Usuarios.FirstOrDefault(u => endereco.UsuarioId == u.Id);
+                if(user == null) { throw new Exception("Usuário não encontrado"); }
+
+                _context.Enderecos.Add(endereco);
+                _context.SaveChanges();
+            }
+            catch
+            {
+                throw new Exception("Não foi possível cadastrar o endereço");
             }
             return GetEndereco(endereco.Id);
         }
 
+        public bool? DeleteEndereco(int idEndereco)
+        {
+            var endereco = GetEndereco(idEndereco);
+            if(endereco != null)
+            {
+                _context.Enderecos.Remove(endereco);
+                _context.SaveChanges();
+
+                return true;
+            }
+            return false;
+        }
+
+        public List<Endereco> GetAllEnderecosOfUser(int idUsuario)
+        {
+            return _context.Enderecos
+                .AsNoTracking()
+                .Where(e => e.UsuarioId == idUsuario)
+                .ToList();
+        }
+
         public Endereco? GetEndereco(int id)
         {
-                return _context.Enderecos.FirstOrDefault(e => e.Id == id);
+            return _context.Enderecos.FirstOrDefault(e => e.Id == id);
         }
 
         public Endereco UpdateEndereco(Endereco endereco)

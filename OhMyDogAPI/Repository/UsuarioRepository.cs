@@ -1,8 +1,8 @@
-﻿using OhMyDogAPI.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using OhMyDogAPI.Data;
 using OhMyDogAPI.Model;
 using OhMyDogAPI.Model.dto;
 using OhMyDogAPI.Model.Interfaces;
-using System.ComponentModel;
 
 namespace OhMyDogAPI.Repository
 {
@@ -18,83 +18,72 @@ namespace OhMyDogAPI.Repository
         }
         public Usuario Login(Credenciais credenciais)
         {
-            var usuario = _context.Usuarios.FirstOrDefault(u => u.email == credenciais.Email);
+            var usuario = _context.Usuarios.FirstOrDefault(u => u.Email == credenciais.Email);
             if (usuario == null) {throw new Exception("Usuário inválido");}
 
-            return credenciais.Senha == usuario.senha ? ConvertDtoToUsuario(usuario) : throw new Exception("Senha inválida");
+            return credenciais.Senha == usuario.Senha ? usuario : throw new Exception("Senha inválida");
         }
-        public Usuario Create(Usuario usuario)
+        public UsuarioComEndereco Create(UsuarioComEndereco usuarioComEndereco)
         {
-            var endereco = _enderecoRepository.Create(usuario.EnderecoInfo);
+            var usuario = usuarioComEndereco.Usuario;
+            var endereco = usuarioComEndereco.Endereco;
 
-            usuario.EnderecoInfo = endereco;
-
-            var result = _context.Usuarios.Add(ConvertUsuarioToDto(usuario));
-            _context.SaveChanges();
-
-            if (result == null)
+            try
             {
-                throw new Exception("Não foi possível cadastrar o usuário");
+                _context.Usuarios.Add(usuario);
+                _context.SaveChanges();
+
+                endereco.UsuarioId = _context.Usuarios.Max(u => u.Id);
+
+                _enderecoRepository.Create(endereco);
             }
-            return GetByCpf(usuario.Cpf);
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return new UsuarioComEndereco()
+            {
+                Usuario = GetByCpf(usuario.Cpf),
+                Endereco = _enderecoRepository.GetEndereco(_context.Enderecos.Max(e=> e.Id))
+            };
         }
         public List<Usuario> GetAll()
         {
-            var result = new List<Usuario>();
-
-            List<UsuarioDto> listaUsuarios = _context.Usuarios.ToList();
-
-            foreach (var u in listaUsuarios)
-            {
-               result.Add(ConvertDtoToUsuario(u));
-            }
+            var result = _context.Usuarios
+                .AsNoTracking()
+                .ToList();
 
             return result;
         }
         public Usuario? GetById(int id)
         {
-            var result = _context.Usuarios.FirstOrDefault(u => u.id == id);
+            var result = _context.Usuarios.FirstOrDefault(u => u.Id == id);
             if (result == null) 
                 throw new Exception("Usuário não encontrado");
             
-            return ConvertDtoToUsuario(result);
+            return result;
         }
         public Usuario? GetByCpf(string cpf)
         {
-            var result = _context.Usuarios.FirstOrDefault(u => u.cpf == cpf);
+            var result = _context.Usuarios.FirstOrDefault(u => u.Cpf == cpf);
             if (result == null)
                 throw new Exception("Usuário não encontrado");
 
-            return ConvertDtoToUsuario(result);
+            return result;
         }
         public Usuario Update(Usuario usuario)
-        {
-            var userParamDto = ConvertUsuarioToDto(usuario);
-            if(userParamDto == null) { throw new ArgumentNullException("Usuário não encontrado"); }
-            
-            var oldUser = _context.Usuarios.FirstOrDefault(u => u.id == userParamDto.id);
+        {      
+            var oldUser = _context.Usuarios.FirstOrDefault(u => u.Id == usuario.Id);
             if (oldUser == null) { throw new ArgumentNullException("Usuário não encontrado"); }
 
-            oldUser.telefone = userParamDto.telefone;
-            oldUser.email = userParamDto.email;
-            oldUser.senha = userParamDto.senha;
-            oldUser.is_active = userParamDto.is_active;
-            oldUser.nome_completo = userParamDto.nome_completo;
-            oldUser.id_tipo_usuario = userParamDto.id_tipo_usuario;
+            oldUser.Telefone = usuario.Telefone;
+            oldUser.Email = usuario.Email;
+            oldUser.Senha = usuario.Senha;
+            oldUser.IsActive = usuario.IsActive;
+            oldUser.NomeCompleto = usuario.NomeCompleto;
+            oldUser.TipoUsuarioId= usuario.TipoUsuarioId;
 
-            var oldEndereco = _context.Enderecos.FirstOrDefault(e => e.Id == userParamDto.id_endereco);
-            if (oldEndereco == null) { throw new ArgumentNullException("Endereço não encontrado"); }
-            var endereco = usuario.EnderecoInfo;
-
-            oldEndereco.Cep = endereco.Cep;
-            oldEndereco.Logradouro = endereco.Logradouro;
-            oldEndereco.Numero = endereco.Numero;
-            oldEndereco.Bairro = endereco.Bairro;
-            oldEndereco.Uf = endereco.Uf;
-            oldEndereco.Cidade = endereco.Cidade;
-            oldEndereco.Complemento = endereco.Complemento;
-
-            _context.Enderecos.Update(oldEndereco);
             _context.Usuarios.Update(oldUser);
             _context.SaveChanges();
 
@@ -102,10 +91,10 @@ namespace OhMyDogAPI.Repository
         }
         public Usuario Disable(int id)
         {
-            var oldUser = _context.Usuarios.FirstOrDefault(u => u.id == id);
+            var oldUser = _context.Usuarios.FirstOrDefault(u => u.Id == id);
             if (oldUser == null) { throw new ArgumentNullException("Usuário não encontrado"); }
 
-            oldUser.is_active = false;
+            oldUser.IsActive = false;
             _context.Usuarios.Update(oldUser);
             _context.SaveChanges();
 
@@ -114,47 +103,14 @@ namespace OhMyDogAPI.Repository
 
         public Usuario Enable(int id)
         {
-            var oldUser = _context.Usuarios.FirstOrDefault(u => u.id == id);
+            var oldUser = _context.Usuarios.FirstOrDefault(u => u.Id == id);
             if (oldUser == null) { throw new ArgumentNullException("Usuário não encontrado"); }
 
-            oldUser.is_active = true;
+            oldUser.IsActive = true;
             _context.Usuarios.Update(oldUser);
             _context.SaveChanges();
 
             return GetById(id);
         }
-        private UsuarioDto ConvertUsuarioToDto(Usuario usuario)
-        {
-            var dto = new UsuarioDto()
-            {
-                email = usuario.Email,
-                id = usuario.Id,
-                id_endereco = usuario.EnderecoInfo.Id,
-                id_tipo_usuario = (int)usuario.TipoUsuario,
-                senha = usuario.Senha,
-                telefone = usuario.Telefone,
-                cpf = usuario.Cpf,
-                nome_completo = usuario.NomeCompleto,
-                is_active = usuario.IsActive    
-            };
-            return dto;
-        }
-        private Usuario ConvertDtoToUsuario(UsuarioDto dto)
-        {
-            var usuario = new Usuario()
-            {
-                Id = dto.id,
-                Cpf = dto.cpf,
-                Email = dto.email,
-                EnderecoInfo = _enderecoRepository.GetEndereco(dto.id_endereco),
-                NomeCompleto = dto.nome_completo,
-                Senha = dto.senha,
-                Telefone = dto.telefone,
-                TipoUsuario = (ETipoUsuario)dto.id_tipo_usuario,
-                IsActive = dto.is_active
-            };
-            return usuario;
-        }
-
     }
 }

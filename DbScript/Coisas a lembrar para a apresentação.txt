@@ -1,0 +1,5 @@
+COISAS A LEMBRAR (PARA NÃO DAR ERRADO NA APRESENTAÇÃO)
+
+- Telefone unique (não pode repetir, se não gera erro na api)
+
+- Tamanho da senha (não pode ser menor que 8 e nem maior que 30)
