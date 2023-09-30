@@ -19,6 +19,36 @@
 }
 
 {
+  "usuario": {
+    "cpf": "25814774185",
+    "nomeCompleto": "Gabriel Heitor Lima",
+    "email": "gabriel@gmail.com",
+    "senha": "12345678",
+    "telefone": "11995632847",
+    "isActive": true,
+    "tipoUsuarioId": 1
+  },
+  "endereco": {
+    "cep": "60763710",
+    "logradouro": "Rua Coração de Maria",
+    "numero": 500,
+    "bairro": "Conjunto Esperança",
+    "cidade": "Fortaleza",
+    "uf": "CE",
+    "complemento": "Pq. Lagoa"
+  }
+}
+
+  "endereco": {
+    "cep": "25734537",
+    "logradouro": "Rua Sabrina",
+    "numero": 65,
+    "bairro": "Parque Galinha Seca",
+    "cidade": "Rondonópolis",
+    "uf": "MT"
+  }
+
+{
   "nome": "Antipulgas e Carrapatos MSD Bravecto para Cães de 4,5 a 10Kg - 250 mg",
   "descricao": "O Antipulgas e Carrapatos MSD Bravecto para Cães de 4,5 a 10 Kg é um primeiro comprimido mastigável, indicado para o tratamento de infestações por carrapatos e pulgas, em cachorros, proporcionando 12 semanas de proteção. É um inseticida e acaricida, sistêmico com longa duração de ação, que promove eficácia imediata e persistente por 12 semanas contra carrapatos (formas adultas e jovens de ixodes ricinus, ixodes hexagonus, ixodes holocyclus, Ixodes scapularis dermacentor reticulatus, dermacentor variabilis e rhipicephalus sanguineus) e pulgas (ctenocephalides felis e ctenocephalides canis). Pulgas e carrapatos devem estar aderidos ao cachorro, e já tendo iniciada a alimentação para serem expostos ao princípio ativo. O início da ação é rápida dentro de 8 horas para pulgas e 12 horas para carrapatos. O produto pode ser utilizado como parte de uma estratégia de tratamento para a dermatite alérgica à picada de pulgas.",
   "foto": "https://www.petlove.com.br/images/products/256000/product/Antipulgas_e_Carrapatos_MSD_Bravecto_para_C%C3%A3es_de_4_5_A_10kg_-_250_mg_3104947_%281%29_%281%29.png?1653504863",

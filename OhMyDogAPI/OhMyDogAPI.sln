@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OhMyDogAPI", "OhMyDogAPI.csproj", "{EC9E8828-BF57-4000-ADDF-BF6922034A79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OhMyDogAPI", "OhMyDogAPI.csproj", "{EC9E8828-BF57-4000-ADDF-BF6922034A79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerifyNullableObject", "..\VerifyNullableObject\VerifyNullableObject.csproj", "{A41B9ADB-2C23-4E6A-BCCC-F21104FB9399}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{EC9E8828-BF57-4000-ADDF-BF6922034A79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC9E8828-BF57-4000-ADDF-BF6922034A79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC9E8828-BF57-4000-ADDF-BF6922034A79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A41B9ADB-2C23-4E6A-BCCC-F21104FB9399}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A41B9ADB-2C23-4E6A-BCCC-F21104FB9399}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A41B9ADB-2C23-4E6A-BCCC-F21104FB9399}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A41B9ADB-2C23-4E6A-BCCC-F21104FB9399}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
