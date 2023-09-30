@@ -44,11 +44,11 @@ namespace OhMyDogAPI.Controllers
         }
 
         [HttpPost("cadastro")]
-        public IActionResult Cadastrar(Usuario usuario)
+        public IActionResult Cadastrar(UsuarioComEndereco usuarioComEndereco)
         {
             try
             {
-                return Ok(_usuarioRepository.Create(usuario));
+                return Ok(_usuarioRepository.Create(usuarioComEndereco));
             }
             catch (Exception ex)
             {

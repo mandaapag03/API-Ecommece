@@ -9,7 +9,7 @@
         public string? Senha { get; set; }
         public string? Telefone { get; set; }
         public bool IsActive { get; set; }
-        public ETipoUsuario TipoUsuario { get; set;}
-        public Endereco? EnderecoInfo { get; set; }
+        public int TipoUsuarioId { get; set; }
+        public TipoUsuario? TipoUsuario { get; set;}
     }
 }

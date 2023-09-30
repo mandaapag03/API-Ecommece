@@ -3,6 +3,6 @@
     public class Carrinho
     {
         public int UsuarioId { get; set; }
-        public int ProdutoId { get; set; }
+        public List<Produto>? Produtos { get; set; }
     }
 }

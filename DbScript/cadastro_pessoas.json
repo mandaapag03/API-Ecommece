@@ -1,48 +1,14 @@
 {
-  "cpf": "66314960398",
-  "nomeCompleto": "Sueli Cláudia Drumond",
-  "email": "sueli-drumond94@mv1.com.br",
-  "senha": "2ss5NXu7Oq",
-  "telefone": "71981714156",
-  "isActive": true,
-  "tipoUsuario": 2,
-  "enderecoInfo": {
-    "cep": "40321025",
-    "logradouro": "Rua Marques de Souza",
-    "numero": 564,
-    "bairro": "Caixa DÁgua",
-    "cidade": "Salvador",
-    "uf": "BA"
-  }
-}
-
-{
-  "cpf": "13008789404",
-  "nomeCompleto": "Murilo Rodrigo Ferreira",
-  "email": "murilo.rodrigo.ferreira@truckeixo.com.br",
-  "senha": "cW7OPcZrO9",
-  "telefone": "71983840162",
-  "isActive": true,
-  "tipoUsuario": 1,
-  "enderecoInfo": {
-    "cep": "41490466",
-    "logradouro": "Caminho 12",
-    "numero": 106,
-    "bairro": "Mussurunga I",
-    "cidade": "Salvador",
-    "uf": "BA"
-  }
-}
-
-{
-  "cpf": "71952603994",
-  "nomeCompleto": "Lavínia Tânia Duarte",
-  "email": "lavinia_tania_duarte@ulbra.edu.br",
-  "senha": "nYlCu8U1PO",
-  "telefone": "66994639936",
-  "isActive": true,
-  "tipoUsuario": 2,
-  "enderecoInfo": {
+  "usuario": {
+      "cpf": "71952603994",
+      "nomeCompleto": "Lavínia Tânia Duarte",
+      "email": "lavinia_tania_duarte@ulbra.edu.br",
+      "senha": "nYlCu8U1PO",
+      "telefone": "66994639936",
+      "isActive": true,
+      "tipoUsuarioId": 2
+  },
+  "endereco": {
     "cep": "78735437",
     "logradouro": "Rua A-35",
     "numero": 625,
@@ -51,6 +17,36 @@
     "uf": "MT"
   }
 }
+
+{
+  "usuario": {
+    "cpf": "25814774185",
+    "nomeCompleto": "Gabriel Heitor Lima",
+    "email": "gabriel@gmail.com",
+    "senha": "12345678",
+    "telefone": "11995632847",
+    "isActive": true,
+    "tipoUsuarioId": 1
+  },
+  "endereco": {
+    "cep": "60763710",
+    "logradouro": "Rua Coração de Maria",
+    "numero": 500,
+    "bairro": "Conjunto Esperança",
+    "cidade": "Fortaleza",
+    "uf": "CE",
+    "complemento": "Pq. Lagoa"
+  }
+}
+
+  "endereco": {
+    "cep": "25734537",
+    "logradouro": "Rua Sabrina",
+    "numero": 65,
+    "bairro": "Parque Galinha Seca",
+    "cidade": "Rondonópolis",
+    "uf": "MT"
+  }
 
 {
   "nome": "Antipulgas e Carrapatos MSD Bravecto para Cães de 4,5 a 10Kg - 250 mg",
