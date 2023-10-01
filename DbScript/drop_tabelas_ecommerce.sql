@@ -13,6 +13,7 @@ select * from dbpet.promocoes_atuais;
 select * from dbpet.forma_pagamento;
 select * from dbpet.pagamento;
 select * from dbpet.carrinho;
+select * from dbpet.favoritos;
 select * from dbpet.avaliacao;
 select * from dbpet.estoque;
 
@@ -21,6 +22,7 @@ select * from dbpet.estoque;
 drop table dbpet.pagamento;
 drop table dbpet.avaliacao;
 drop table dbpet.carrinho;
+drop table dbpet.favoritos;
 drop table dbpet.promocoes_atuais;
 drop table dbpet.item_pedido;
 drop table dbpet.endereco;

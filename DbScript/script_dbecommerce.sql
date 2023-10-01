@@ -138,6 +138,15 @@ create table if not exists  dbpet.carrinho(
 	primary key(id_usuario, id_produto)
 );
 
+-- Favoritos
+create table if not exists  dbpet.favoritos(
+	id_usuario int not null,
+	id_produto int not null,
+	constraint favoritos_id_usuario_fk foreign key (id_usuario) REFERENCES dbpet.usuario(id),
+	constraint favoritos_id_produto_fk foreign key (id_produto) REFERENCES dbpet.produto(id),
+	primary key(id_usuario, id_produto)
+);
+
 -- Avaliação
 create table if not exists  dbpet.avaliacao(
 	id serial primary key, 
