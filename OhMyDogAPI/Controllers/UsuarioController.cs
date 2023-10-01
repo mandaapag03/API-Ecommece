@@ -56,7 +56,7 @@ namespace OhMyDogAPI.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPut("alterar")]
         public IActionResult Atualizar (Usuario usuario)
         {
             try

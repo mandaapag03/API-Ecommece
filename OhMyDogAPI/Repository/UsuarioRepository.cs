@@ -3,6 +3,7 @@ using OhMyDogAPI.Data;
 using OhMyDogAPI.Model;
 using OhMyDogAPI.Model.dto;
 using OhMyDogAPI.Model.Interfaces;
+using VerifyNullablesObjects;
 
 namespace OhMyDogAPI.Repository
 {
@@ -19,7 +20,7 @@ namespace OhMyDogAPI.Repository
         public Usuario Login(Credenciais credenciais)
         {
             var usuario = _context.Usuarios.FirstOrDefault(u => u.Email == credenciais.Email);
-            if (usuario == null) {throw new Exception("Usuário inválido");}
+            NullOrEmptyVariable<Usuario>.ThrowIfNull(usuario, "Usuário inválido");
 
             return credenciais.Senha == usuario.Senha ? usuario : throw new Exception("Senha inválida");
         }
@@ -59,23 +60,21 @@ namespace OhMyDogAPI.Repository
         public Usuario? GetById(int id)
         {
             var result = _context.Usuarios.FirstOrDefault(u => u.Id == id);
-            if (result == null) 
-                throw new Exception("Usuário não encontrado");
-            
+            NullOrEmptyVariable<Usuario>.ThrowIfNull(result, "Usuário não encontrado");
+
             return result;
         }
         public Usuario? GetByCpf(string cpf)
         {
             var result = _context.Usuarios.FirstOrDefault(u => u.Cpf == cpf);
-            if (result == null)
-                throw new Exception("Usuário não encontrado");
+            NullOrEmptyVariable<Usuario>.ThrowIfNull(result, "Usuário não encontrado");
 
             return result;
         }
         public Usuario Update(Usuario usuario)
         {      
             var oldUser = _context.Usuarios.FirstOrDefault(u => u.Id == usuario.Id);
-            if (oldUser == null) { throw new ArgumentNullException("Usuário não encontrado"); }
+            NullOrEmptyVariable<Usuario>.ThrowIfNull(oldUser, "Usuário não encontrado");
 
             oldUser.Telefone = usuario.Telefone;
             oldUser.Email = usuario.Email;
@@ -91,7 +90,7 @@ namespace OhMyDogAPI.Repository
         public Usuario Disable(int id)
         {
             var oldUser = _context.Usuarios.FirstOrDefault(u => u.Id == id);
-            if (oldUser == null) { throw new ArgumentNullException("Usuário não encontrado"); }
+            NullOrEmptyVariable<Usuario>.ThrowIfNull(oldUser, "Usuário não encontrado");
 
             oldUser.IsActive = false;
             _context.Usuarios.Update(oldUser);
@@ -103,7 +102,7 @@ namespace OhMyDogAPI.Repository
         public Usuario Enable(int id)
         {
             var oldUser = _context.Usuarios.FirstOrDefault(u => u.Id == id);
-            if (oldUser == null) { throw new ArgumentNullException("Usuário não encontrado"); }
+            NullOrEmptyVariable<Usuario>.ThrowIfNull(oldUser, "Usuário não encontrado");
 
             oldUser.IsActive = true;
             _context.Usuarios.Update(oldUser);

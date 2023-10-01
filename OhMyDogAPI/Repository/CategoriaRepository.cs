@@ -2,6 +2,7 @@
 using OhMyDogAPI.Data;
 using OhMyDogAPI.Model;
 using OhMyDogAPI.Model.Interfaces;
+using VerifyNullablesObjects;
 
 namespace OhMyDogAPI.Repository
 {
@@ -18,6 +19,11 @@ namespace OhMyDogAPI.Repository
         {
             try
             {
+                if (_context.Categorias.AsNoTracking().Where(c => c.Nome == categoria.Nome).Any())
+                {
+                    throw new Exception("Essa categoria já está registrada");
+                }
+
                 _context.Categorias.Add(categoria);
                 _context.SaveChanges();
                 
@@ -31,7 +37,7 @@ namespace OhMyDogAPI.Repository
             return GetById(idCategoria);
         }
 
-        public Categoria Delete(int id)
+        public bool Delete(int id)
         {
             var categoria = GetById(id);
 
@@ -42,7 +48,7 @@ namespace OhMyDogAPI.Repository
 
             var subcategorias = _context.Categorias
                 .AsNoTracking()
-                .Where(c => c.IdSubCategoria != null)
+                .Where(c => c.IdSubCategoria == categoria.Id)
                 .ToList();
 
             if (produtosComCategoria.Count != 0 || subcategorias.Count != 0)
@@ -51,7 +57,7 @@ namespace OhMyDogAPI.Repository
             _context.Categorias.Remove(categoria);
             _context.SaveChanges();
 
-            return categoria;
+            return true;
         }
 
         public List<Categoria>? GetAllCategorias()
@@ -69,7 +75,7 @@ namespace OhMyDogAPI.Repository
                 .Include(c => c.SubCategoria)
                 .FirstOrDefault(c => c.Id == id);
 
-            return categoria == null ? throw new Exception("Categoria não existe") : categoria; 
+            return NullOrEmptyVariable<Categoria>.ThrowIfNull(categoria, "Categoria não existe");
         }
     }
 }

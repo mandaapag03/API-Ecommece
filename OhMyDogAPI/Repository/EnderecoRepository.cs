@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 using OhMyDogAPI.Data;
 using OhMyDogAPI.Model;
 using OhMyDogAPI.Model.Interfaces;
+using VerifyNullablesObjects;
 
 namespace OhMyDogAPI.Repository
 {
@@ -24,9 +24,9 @@ namespace OhMyDogAPI.Repository
                 _context.Enderecos.Add(endereco);
                 _context.SaveChanges();
             }
-            catch
+            catch(Exception ex)
             {
-                throw new Exception("Não foi possível cadastrar o endereço");
+                throw new Exception(ex.Message);
             }
             return GetEndereco(endereco.Id);
         }
@@ -34,18 +34,21 @@ namespace OhMyDogAPI.Repository
         public bool? DeleteEndereco(int idEndereco)
         {
             var endereco = GetEndereco(idEndereco);
-            if(endereco != null)
-            {
-                _context.Enderecos.Remove(endereco);
-                _context.SaveChanges();
+            NullOrEmptyVariable<Endereco>.ThrowIfNull(endereco, "Endereço não encontrado");
+            
+            _context.Enderecos.Remove(endereco);
+            _context.SaveChanges();
 
-                return true;
-            }
-            return false;
+            return true;
         }
 
         public List<Endereco> GetAllEnderecosOfUser(int idUsuario)
         {
+            if(!_context.Usuarios.Where(u => u.Id == idUsuario).Any())
+            {
+                throw new Exception("Usuário não encontrado");
+            }
+
             return _context.Enderecos
                 .AsNoTracking()
                 .Where(e => e.UsuarioId == idUsuario)
@@ -54,18 +57,14 @@ namespace OhMyDogAPI.Repository
 
         public Endereco? GetEndereco(int id)
         {
-            return _context.Enderecos.FirstOrDefault(e => e.Id == id);
+            return NullOrEmptyVariable<Endereco>.ThrowIfNull(_context.Enderecos.FirstOrDefault(e => e.Id == id), "Endereço não encontrado");
         }
-
         public Endereco UpdateEndereco(Endereco endereco)
         {
             try
             {
                 var enderecoAntigo = _context.Enderecos.FirstOrDefault(e => e.Id == endereco.Id);
-                if (enderecoAntigo == null)
-                {
-                    throw new Exception("Endereço não encontrado");
-                }
+                NullOrEmptyVariable<Endereco>.ThrowIfNull(endereco, "Endereço não encontrado");
 
                 enderecoAntigo.Logradouro = endereco.Logradouro;
                 enderecoAntigo.Numero = endereco.Numero;
@@ -80,10 +79,9 @@ namespace OhMyDogAPI.Repository
 
                 return enderecoAntigo;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception(ex.Message);
             }
         }
     }

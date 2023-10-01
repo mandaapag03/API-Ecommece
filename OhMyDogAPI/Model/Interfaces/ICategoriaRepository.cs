@@ -5,6 +5,6 @@
         List<Categoria>? GetAllCategorias();
         Categoria GetById(int id);
         Categoria Create(Categoria categoria);
-        Categoria Delete(int id);
+        bool Delete(int id);
     }
 }

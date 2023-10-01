@@ -2,6 +2,7 @@
 using OhMyDogAPI.Data;
 using OhMyDogAPI.Model;
 using OhMyDogAPI.Model.Interfaces;
+using VerifyNullablesObjects;
 
 namespace OhMyDogAPI.Repository
 {
@@ -28,8 +29,7 @@ namespace OhMyDogAPI.Repository
                 .Include(c => c.Categoria.SubCategoria)
                 .FirstOrDefault(p => p.Id == id);
 
-            if (result == null) { throw new Exception("Produto não encontrado"); }
-            return result;
+            return NullOrEmptyVariable<Produto>.ThrowIfNull(result, "Produto não encontrado");
         }
 
         public Produto Create(Produto produto)
@@ -40,8 +40,8 @@ namespace OhMyDogAPI.Repository
             var result = _context.Produtos
                 .Include (p => p.Categoria)
                 .FirstOrDefault(p => p.Nome == produto.Nome);
-            if (result == null) { throw new Exception("Não foi possível cadastrar seu produto, tente mais tarde.");  }
-            return result;
+
+            return NullOrEmptyVariable<Produto>.ThrowIfNull(result, "Não foi possível cadastrar seu produto, tente mais tarde.");
         }
         public Produto Update(Produto produto)
         {
@@ -64,8 +64,7 @@ namespace OhMyDogAPI.Repository
         public Produto Disable(int id)
         {
             var oldProduto = _context.Produtos.FirstOrDefault(p => p.Id == id);
-            if (oldProduto == null)
-                throw new Exception("Produto não encontrado");
+            NullOrEmptyVariable<Produto>.ThrowIfNull(oldProduto, "Produto não encontrado");
 
             oldProduto.IsActive = false;
 
@@ -78,8 +77,7 @@ namespace OhMyDogAPI.Repository
         public Produto Enable(int id)
         {
             var oldProduto = _context.Produtos.FirstOrDefault(p => p.Id == id);
-            if (oldProduto == null)
-                throw new Exception("Produto não encontrado");
+            NullOrEmptyVariable<Produto>.ThrowIfNull(oldProduto, "Produto não encontrado");
 
             oldProduto.IsActive = true;
 
