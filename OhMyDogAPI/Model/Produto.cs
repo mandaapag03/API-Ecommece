@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OhMyDogAPI.Model
 {
-    //[Table("produto", Schema = "dbpet")]
     public class Produto
     {
+        [Obsolete]
         public int Id { get; set; }
 
         public string Nome { get; set; }
@@ -20,6 +20,7 @@ namespace OhMyDogAPI.Model
         public int CategoriaId { get; set; }
 
         //Navigation Properties
+        [Obsolete]
         public Categoria? Categoria { get; set; } 
     }
 }

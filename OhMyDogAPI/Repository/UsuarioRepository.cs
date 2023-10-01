@@ -82,7 +82,6 @@ namespace OhMyDogAPI.Repository
             oldUser.Senha = usuario.Senha;
             oldUser.IsActive = usuario.IsActive;
             oldUser.NomeCompleto = usuario.NomeCompleto;
-            oldUser.TipoUsuarioId= usuario.TipoUsuarioId;
 
             _context.Usuarios.Update(oldUser);
             _context.SaveChanges();

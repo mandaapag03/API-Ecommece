@@ -7,6 +7,7 @@ namespace OhMyDogAPI.Model
 {
     public class Endereco
     {
+        [Obsolete]
         public int Id { get; set; }
 
         public string Cep { get; set; }
@@ -23,9 +24,11 @@ namespace OhMyDogAPI.Model
 
         public string? Complemento { get; set; }
 
+        [Obsolete]
         public int UsuarioId { get; set; }
 
         // Navigation Property
+        [Obsolete]
         public Usuario? Usuario { get; set; }
     }
 }
