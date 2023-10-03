@@ -38,6 +38,11 @@ insert into dbpet.forma_pagamento (descricao) values
 ('Cartão de crédito'),
 ('Cartão de débito');
 
+insert into dbpet.status_pagamento (descricao) values 
+('Pendente'), 
+('Concluído'),
+('Cancelado')
+
 insert into dbpet.produto (id_categoria, nome_produto, descricao, foto, preco_unitario, is_active) 
 values (5,
 		'Ração Pedigree Nutrição Essencial Carne para Cães Adultos - Leve 15kg e Pague 13,5kg',

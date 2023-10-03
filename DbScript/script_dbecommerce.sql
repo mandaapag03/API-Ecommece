@@ -114,17 +114,25 @@ create table if not exists  dbpet.forma_pagamento(
 	descricao VARCHAR(50) not null unique
 );
 
+-- Status do Pagamento
+create table if not exists dbpet.status_pagamento(
+	id serial primary key,
+	descricao varchar(20)
+);
+
 -- Pagamento
 create table if not exists  dbpet.pagamento(
 	id serial primary key,
 	id_usuario int not null,
 	id_pedido int not null,
+	id_status int not null,
 	id_forma_pagamento smallint not null,
 	qtd_parcelas smallint,
 	total real not null,
 	constraint pagamento_id_usuario_fk foreign key (id_usuario) REFERENCES dbpet.usuario(id),
 	constraint pagamento_id_pedido_fk foreign key (id_pedido) REFERENCES dbpet.pedido(id),
 	constraint pagamento_id_forma_pagamento_fk foreign key (id_forma_pagamento) REFERENCES dbpet.forma_pagamento(id),
+	constraint status_pagamento_id_pagamento_fk foreign key (id_status) references dbpet.status_pagamento(id),	
 	constraint pagamento_total_ck check (total > 0),
 	constraint qtd_parcelas_ck check (qtd_parcelas > 0 and qtd_parcelas <= 12)
 );

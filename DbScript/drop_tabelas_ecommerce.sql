@@ -16,10 +16,12 @@ select * from dbpet.carrinho;
 select * from dbpet.favoritos;
 select * from dbpet.avaliacao;
 select * from dbpet.estoque;
+select * from dbpet.status_pagamento;
 
 -- drop table
 
 drop table dbpet.pagamento;
+drop table dbpet.status_pagamento;
 drop table dbpet.avaliacao;
 drop table dbpet.carrinho;
 drop table dbpet.favoritos;

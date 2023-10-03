@@ -41,6 +41,19 @@ namespace OhMyDogAPI.Controllers
             }
         }
 
+        [HttpGet("subcategorias/listar/{id}")]
+        public IActionResult ListarSubcategorias(int id)
+        {
+            try
+            {
+                return Ok(_categoriaRepository.GetSubcategoriasById(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost("criar")]
         public IActionResult InserirCategoria(Categoria categoria)
         {

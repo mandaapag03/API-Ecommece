@@ -77,5 +77,15 @@ namespace OhMyDogAPI.Repository
 
             return NullOrEmptyVariable<Categoria>.ThrowIfNull(categoria, "Categoria não existe");
         }
+
+        public List<Categoria>? GetSubcategoriasById(int id)
+        {
+            var sobCategoria = _context.Categorias.FirstOrDefault(c => c.Id == id);
+            NullOrEmptyVariable<Categoria>.ThrowIfNull(sobCategoria, "Categoria não existe");
+            
+            return _context.Categorias
+                .Where(c => c.IdSubCategoria == id)
+                .ToList();
+        }
     }
 }
