@@ -12,6 +12,10 @@ namespace OhMyDogAPI.Data
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<TipoUsuario> TiposUsuarios { get; set; }
         public DbSet<ItemCarrinho> ItensCarrinho { get; set; }
+        public DbSet<FormaEnvio> FormasEnvio { get; set; }
+        public DbSet<FormaPagamento> FormasPagamento { get; set; }
+        public DbSet<Promocao> Promocoes { get; set; }
+        public DbSet<PromocoesAtuais> PromocoesAtuais { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             var config = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.Development.json").Build();
@@ -27,6 +31,10 @@ namespace OhMyDogAPI.Data
             builder.ApplyConfiguration(new TipoUsuarioMap());
             builder.ApplyConfiguration(new UsuarioMap());
             builder.ApplyConfiguration(new ItemCarrinhoMap());
+            builder.ApplyConfiguration(new FormaEnvioMap());
+            builder.ApplyConfiguration(new FormaPagamentoMap());
+            builder.ApplyConfiguration(new PromocaoMap());
+            builder.ApplyConfiguration(new PromocoesAtuaisMap());
         }
     }
 }
