@@ -41,7 +41,7 @@ insert into dbpet.forma_pagamento (descricao) values
 insert into dbpet.status_pagamento (descricao) values 
 ('Pendente'), 
 ('Concluído'),
-('Cancelado')
+('Cancelado');
 
 insert into dbpet.produto (id_categoria, nome_produto, descricao, foto, preco_unitario, is_active) 
 values (5,
