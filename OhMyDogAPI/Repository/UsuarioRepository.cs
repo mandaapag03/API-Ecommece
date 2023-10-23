@@ -9,13 +9,11 @@ namespace OhMyDogAPI.Repository
 {
     public class UsuarioRepository : IUsuariosRepository
     {
-        DatabaseContext _context;
-        EnderecoRepository _enderecoRepository;
+        private readonly DatabaseContext _context;
 
         public UsuarioRepository() 
         {
             _context = new DatabaseContext();
-            _enderecoRepository = new EnderecoRepository();
         }
         public Usuario Login(Credenciais credenciais)
         {
@@ -24,30 +22,23 @@ namespace OhMyDogAPI.Repository
 
             return credenciais.Senha == usuario.Senha ? usuario : throw new Exception("Senha inválida");
         }
-        public UsuarioComEndereco Create(UsuarioComEndereco usuarioComEndereco)
+        public Usuario Create(Usuario usuario)
         {
-            var usuario = usuarioComEndereco.Usuario;
-            var endereco = usuarioComEndereco.Endereco;
-
             try
             {
                 _context.Usuarios.Add(usuario);
                 _context.SaveChanges();
-
-                endereco.UsuarioId = _context.Usuarios.Max(u => u.Id);
-
-                _enderecoRepository.Create(endereco);
+            }
+            catch(DbUpdateException ex)
+            {
+                throw new Exception("Este usuário já está cadastrado");
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-
-            return new UsuarioComEndereco()
-            {
-                Usuario = GetByCpf(usuario.Cpf),
-                Endereco = _enderecoRepository.GetEndereco(_context.Enderecos.Max(e=> e.Id))
-            };
+            return NullOrEmptyVariable<Usuario>.ThrowIfNull(
+                GetByCpf(usuario.Cpf), "Houve um erro ao adicionar o usuário");
         }
         public List<Usuario> GetAll()
         {

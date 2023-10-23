@@ -5,9 +5,9 @@ namespace OhMyDogAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PromocaoAtuaisController : ControllerBase
+    public class PromocaoAtualController : ControllerBase
     {
-        public PromocaoAtuaisController()
+        public PromocaoAtualController()
         {
             
         }

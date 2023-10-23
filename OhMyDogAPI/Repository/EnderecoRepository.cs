@@ -8,7 +8,7 @@ namespace OhMyDogAPI.Repository
 {
     public class EnderecoRepository : IEnderecoRepository
     {
-        DatabaseContext _context;
+        private readonly DatabaseContext _context;
         public EnderecoRepository() 
         { 
             _context = new DatabaseContext();
@@ -19,7 +19,7 @@ namespace OhMyDogAPI.Repository
             try
             {
                 var user = _context.Usuarios.FirstOrDefault(u => endereco.UsuarioId == u.Id);
-                if(user == null) { throw new Exception("Usuário não encontrado"); }
+                NullOrEmptyVariable<Usuario>.ThrowIfNull(user, "Usuário não encontrado");
 
                 _context.Enderecos.Add(endereco);
                 _context.SaveChanges();
@@ -57,7 +57,8 @@ namespace OhMyDogAPI.Repository
 
         public Endereco? GetEndereco(int id)
         {
-            return NullOrEmptyVariable<Endereco>.ThrowIfNull(_context.Enderecos.FirstOrDefault(e => e.Id == id), "Endereço não encontrado");
+            return NullOrEmptyVariable<Endereco>.ThrowIfNull(
+                _context.Enderecos.FirstOrDefault(e => e.Id == id), "Endereço não encontrado");
         }
         public Endereco UpdateEndereco(Endereco endereco)
         {

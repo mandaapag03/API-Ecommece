@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using OhMyDogAPI.Model;
 using OhMyDogAPI.Model.dto;
 using OhMyDogAPI.Repository;
@@ -44,11 +43,11 @@ namespace OhMyDogAPI.Controllers
         }
 
         [HttpPost("cadastro")]
-        public IActionResult Cadastrar(UsuarioComEndereco usuarioComEndereco)
+        public IActionResult Cadastrar(Usuario usuario)
         {
             try
             {
-                return Ok(_usuarioRepository.Create(usuarioComEndereco));
+                return Ok(_usuarioRepository.Create(usuario));
             }
             catch (Exception ex)
             {
@@ -96,11 +95,24 @@ namespace OhMyDogAPI.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login(Credenciais credenciais)
+        public dynamic Login(Credenciais credenciais)
         {
             try
             {
-                return Ok(_usuarioRepository.Login(credenciais));
+                var usuario = _usuarioRepository.Login(credenciais);
+
+                if(usuario == null)
+                    return NotFound(new { message = "Usuário ou senha inválidos" });
+
+                var token = TokenRepository.GenerateToken(usuario);
+
+                usuario.Senha = "";
+
+                return new
+                {
+                    usuario = usuario,
+                    token = token
+                };
             }
             catch (Exception ex)
             {

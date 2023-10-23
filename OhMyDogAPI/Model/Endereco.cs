@@ -1,9 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Reflection.Metadata.Ecma335;
-using System.Text.Json.Serialization;
-
-namespace OhMyDogAPI.Model
+﻿namespace OhMyDogAPI.Model
 {
     public class Endereco
     {

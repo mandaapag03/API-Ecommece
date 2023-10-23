@@ -6,15 +6,16 @@ using VerifyNullablesObjects;
 
 namespace OhMyDogAPI.Repository
 {
-    public class CarrinhoRepository : ICarrinhoRepository
+    public class FavoritosRepository : IFavoritoRepository
     {
         private readonly DatabaseContext _context;
-        public CarrinhoRepository()
+
+        public FavoritosRepository()
         {
             _context = new DatabaseContext();
         }
 
-        public async Task<ItemCarrinho?> AddItemToCarrinho(ItemCarrinho item)
+        public async Task<ItemFavoritos?> AddItemToFavoritos(ItemFavoritos item)
         {
             try
             {
@@ -24,13 +25,13 @@ namespace OhMyDogAPI.Repository
                 var produto = _context.Produtos.FirstOrDefault(p => p.Id == item.ProdutoId);
                 NullOrEmptyVariable<Produto>.ThrowIfNull(produto, "Produto não encontrado");
 
-                if (_context.ItensCarrinho.Contains(item))
-                    throw new Exception("Este item já está no carrinho");
+                if (_context.ItensFavoritos.Contains(item))
+                    throw new Exception("Este item já está nos favoritos");
 
-                _context.ItensCarrinho.Add(item);
+                _context.ItensFavoritos.Add(item);
                 _context.SaveChanges();
 
-                return _context.ItensCarrinho
+                return _context.ItensFavoritos
                     .Where(i => i.UsuarioId == item.UsuarioId)
                     .FirstOrDefault(i => i.ProdutoId == item.ProdutoId);
             }
@@ -40,7 +41,7 @@ namespace OhMyDogAPI.Repository
             }
         }
 
-        public async Task<bool> DeleteItemFromCarrinho(ItemCarrinho item)
+        public async Task<bool> DeleteItemFromFavoritos(ItemFavoritos item)
         {
             try
             {
@@ -50,32 +51,32 @@ namespace OhMyDogAPI.Repository
                 var produto = _context.Produtos.FirstOrDefault(p => p.Id == item.ProdutoId);
                 NullOrEmptyVariable<Produto>.ThrowIfNull(produto, "Produto não encontrado");
 
-                if (!_context.ItensCarrinho.Contains(item))
-                    throw new Exception("Este item não está no carrinho");
+                if (!_context.ItensFavoritos.Contains(item))
+                    throw new Exception("Este item não está nos favoritos");
 
-                _context.ItensCarrinho.Remove(item);
+                _context.ItensFavoritos.Remove(item);
                 _context.SaveChanges();
 
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
         }
 
-        public async Task<Carrinho?> GetCarrinho(int idUsuario)
+        public async Task<Favoritos?> GetFavoritos(int idUsuario)
         {
             var usuario = _context.Usuarios.FirstOrDefault(u => u.Id == idUsuario);
             NullOrEmptyVariable<Usuario>.ThrowIfNull(usuario, "Usuário não encontrado");
 
-            var produtos = _context.ItensCarrinho
+            var produtos = _context.ItensFavoritos
                 .AsNoTracking()
                 .Where(i => i.UsuarioId == idUsuario)
                 .Select(i => i.Produto)
                 .ToList();
 
-            return new Carrinho()
+            return new Favoritos()
             {
                 UsuarioId = idUsuario,
                 Produtos = NullOrEmptyVariable<List<Produto>>.ThrowIfNull(produtos, "Produto inválido")
