@@ -20,20 +20,20 @@ select * from dbpet.status_pagamento;
 
 -- drop table
 
+drop table dbpet.avaliacao;
 drop table dbpet.pagamento;
 drop table dbpet.status_pagamento;
-drop table dbpet.avaliacao;
 drop table dbpet.carrinho;
 drop table dbpet.favoritos;
 drop table dbpet.promocoes_atuais;
 drop table dbpet.item_pedido;
 drop table dbpet.endereco;
 drop table dbpet.usuario;
-drop table dbpet.pedido;
 drop table dbpet.estoque;
 drop table dbpet.produto;
 drop table dbpet.categoria;
 drop table dbpet.tipo_usuario;
+drop table dbpet.pedido;
 drop table dbpet.forma_envio;
 drop table dbpet.status_pedido;
 drop table dbpet.promocao;

@@ -23,6 +23,7 @@ insert into dbpet.categoria (id_subcategoria, nome_categoria) values
 (4, 'Porta Rações e Acessórios');
 
 insert into dbpet.status_pedido (descricao) values 
+('Pendente'),
 ('Cancelado'),
 ('Preparando o pedido'), 
 ('Nota fiscal emitida'),

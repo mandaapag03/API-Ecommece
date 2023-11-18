@@ -36,14 +36,6 @@ create table if not exists  dbpet.endereco(
 	complemento varchar(30),
 	constraint endereco_id_usuario_fk foreign key (id_usuario) REFERENCES dbpet.usuario(id)
 );
-	
--- Forma de envio
-create table if not exists dbpet.forma_envio(
-	id smallserial primary key,
-	descricao varchar(60) not null unique,
-	valor_frete real not null,
-	constraint valor_frete_ck check (valor_frete > 0)
-);
 
 -- Categorias
 create table if not exists  dbpet.categoria(
@@ -64,7 +56,27 @@ create table if not exists  dbpet.produto(
 	constraint produto_id_categoria_fk foreign key (id_categoria) REFERENCES dbpet.categoria(id),
 	constraint produto_preco_ck check (preco_unitario > 0)
 );
-	
+
+-- Forma de pagamento
+create table if not exists  dbpet.forma_pagamento(
+	id smallserial primary key,
+	descricao VARCHAR(50) not null unique
+);
+
+-- Status do Pagamento
+create table if not exists dbpet.status_pagamento(
+	id serial primary key,
+	descricao varchar(20)
+);
+
+-- Forma de envio
+create table if not exists dbpet.forma_envio(
+	id smallserial primary key,
+	descricao varchar(60) not null unique,
+	valor_frete real not null,
+	constraint valor_frete_ck check (valor_frete > 0)
+);
+
 -- Status do pedido
 create table if not exists  dbpet.status_pedido(
 	id smallserial primary key,
@@ -74,11 +86,30 @@ create table if not exists  dbpet.status_pedido(
 -- Pedidos
 create table if not exists dbpet.pedido(
 	id serial primary key,
+	id_usuario int not null,
 	id_status_pedido smallint not null,
 	id_forma_envio smallint not null,
 	data_pedido date not null,
 	constraint pedido_id_status_pedido_fk foreign key (id_status_pedido) REFERENCES dbpet.status_pedido(id),
-	constraint pedido_id_forma_envio_fk foreign key (id_forma_envio) REFERENCES dbpet.forma_envio(id)
+	constraint pedido_id_forma_envio_fk foreign key (id_forma_envio) REFERENCES dbpet.forma_envio(id),
+	constraint pedido_id_usuario_fk foreign key (id_usuario) REFERENCES dbpet.usuario(id)
+);
+
+-- Pagamento
+create table if not exists  dbpet.pagamento(
+	id serial primary key,
+	id_usuario int not null,
+	id_status int not null,
+	id_forma_pagamento smallint not null,
+	id_pedido int not null,
+	qtd_parcelas smallint,
+	total real not null,
+	constraint pagamento_id_usuario_fk foreign key (id_usuario) REFERENCES dbpet.usuario(id),
+	constraint pagamento_id_forma_pagamento_fk foreign key (id_forma_pagamento) REFERENCES dbpet.forma_pagamento(id),
+	constraint pagamento_id_pagamento_fk foreign key (id_status) references dbpet.status_pagamento(id),
+	constraint pagamento_id_pedido_fk foreign key (id_pedido) REFERENCES dbpet.pedido(id),
+	constraint pagamento_total_ck check (total > 0),
+	constraint qtd_parcelas_ck check (qtd_parcelas > 0 and qtd_parcelas <= 12)
 );
 	
 -- Item de pedido
@@ -106,35 +137,6 @@ create table if not exists  dbpet.promocoes_atuais(
 	constraint promocoes_atuais_id_promocao_fk foreign key (id_promocao) REFERENCES dbpet.promocao(id),
 	constraint promocoes_atuais_id_produto_fk foreign key (id_produto) REFERENCES dbpet.produto(id),
 	primary key( id_produto, id_promocao)
-);
-
--- Forma de pagamento
-create table if not exists  dbpet.forma_pagamento(
-	id smallserial primary key,
-	descricao VARCHAR(50) not null unique
-);
-
--- Status do Pagamento
-create table if not exists dbpet.status_pagamento(
-	id serial primary key,
-	descricao varchar(20)
-);
-
--- Pagamento
-create table if not exists  dbpet.pagamento(
-	id serial primary key,
-	id_usuario int not null,
-	id_pedido int not null,
-	id_status int not null,
-	id_forma_pagamento smallint not null,
-	qtd_parcelas smallint,
-	total real not null,
-	constraint pagamento_id_usuario_fk foreign key (id_usuario) REFERENCES dbpet.usuario(id),
-	constraint pagamento_id_pedido_fk foreign key (id_pedido) REFERENCES dbpet.pedido(id),
-	constraint pagamento_id_forma_pagamento_fk foreign key (id_forma_pagamento) REFERENCES dbpet.forma_pagamento(id),
-	constraint status_pagamento_id_pagamento_fk foreign key (id_status) references dbpet.status_pagamento(id),	
-	constraint pagamento_total_ck check (total > 0),
-	constraint qtd_parcelas_ck check (qtd_parcelas > 0 and qtd_parcelas <= 12)
 );
 
 -- Carrinho
