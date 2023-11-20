@@ -17,7 +17,7 @@ namespace OhMyDogAPI.Controllers
         }
 
         [HttpGet("{idPedido}")]
-        public async Task<ActionResult> GetItemsFromPedido(int pedidoId)
+        public async Task<ActionResult> ListarItensPorPedido(int pedidoId)
         {
             try
             {
@@ -30,7 +30,7 @@ namespace OhMyDogAPI.Controllers
         }
 
         [HttpGet("{idPedido}/{idItem}")]
-        public async Task<ActionResult> GetItemsFromPedido([FromQuery]int pedidoId, [FromQuery] int itemId)
+        public async Task<ActionResult> BuscarItemPorPedido([FromQuery]int pedidoId, [FromQuery] int itemId)
         {
             try
             {

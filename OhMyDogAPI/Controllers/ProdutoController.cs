@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 using OhMyDogAPI.Model;
-using OhMyDogAPI.Model.Interfaces;
 using OhMyDogAPI.Repository;
 
 namespace OhMyDogAPI.Controllers
