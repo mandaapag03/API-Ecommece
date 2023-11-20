@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using OhMyDogAPI.Repository;
 
 namespace OhMyDogAPI.Controllers
 {
@@ -7,9 +7,12 @@ namespace OhMyDogAPI.Controllers
     [ApiController]
     public class PromocaoAtualController : ControllerBase
     {
+        private readonly PromocoesAtuaisRepository _promocoesAtuaisRepository;
         public PromocaoAtualController()
         {
-            
+            _promocoesAtuaisRepository = new PromocoesAtuaisRepository();
         }
+
+
     }
 }

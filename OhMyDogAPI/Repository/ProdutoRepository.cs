@@ -8,7 +8,7 @@ namespace OhMyDogAPI.Repository
 {
     public class ProdutoRepository : IProdutoRepository
     {
-        DatabaseContext _context;
+        private readonly DatabaseContext _context;
         public ProdutoRepository() 
         {
             _context = new DatabaseContext();

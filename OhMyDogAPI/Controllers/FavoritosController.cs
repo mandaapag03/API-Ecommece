@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using OhMyDogAPI.Model.Interfaces;
+﻿using Microsoft.AspNetCore.Mvc;
 using OhMyDogAPI.Model;
 using OhMyDogAPI.Repository;
 

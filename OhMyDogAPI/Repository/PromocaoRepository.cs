@@ -8,7 +8,7 @@ namespace OhMyDogAPI.Repository
 {
     public class PromocaoRepository : IPromocaoRepository
     {
-        private DatabaseContext _context;
+        private readonly DatabaseContext _context;
         public PromocaoRepository()
         {
             _context = new DatabaseContext();
@@ -27,7 +27,17 @@ namespace OhMyDogAPI.Repository
 
         public async Task<bool> DeletePromocao(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var promocao = await GetPromocao(id);
+                _context.Promocoes.Remove(promocao);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public async Task<List<Promocao>> GetAllPromocoes()

@@ -23,8 +23,8 @@ insert into dbpet.categoria (id_subcategoria, nome_categoria) values
 (4, 'Porta Rações e Acessórios');
 
 insert into dbpet.status_pedido (descricao) values 
-('Pendente'),
 ('Cancelado'),
+('Pendente'),
 ('Preparando o pedido'), 
 ('Nota fiscal emitida'),
 ('Enviado para a transportadora'),
@@ -40,9 +40,9 @@ insert into dbpet.forma_pagamento (descricao) values
 ('Cartão de débito');
 
 insert into dbpet.status_pagamento (descricao) values 
+('Cancelado'),
 ('Pendente'), 
-('Concluído'),
-('Cancelado');
+('Concluído');
 
 insert into dbpet.produto (id_categoria, nome_produto, descricao, foto, preco_unitario, is_active) 
 values (5,

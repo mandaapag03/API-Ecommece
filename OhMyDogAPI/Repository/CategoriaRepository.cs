@@ -8,7 +8,7 @@ namespace OhMyDogAPI.Repository
 {
     public class CategoriaRepository : ICategoriaRepository
     {
-        DatabaseContext _context;
+        private readonly DatabaseContext _context;
 
         public CategoriaRepository()
         {

@@ -89,10 +89,12 @@ create table if not exists dbpet.pedido(
 	id_usuario int not null,
 	id_status_pedido smallint not null,
 	id_forma_envio smallint not null,
+	id_endereco int not null,
 	data_pedido date not null,
 	constraint pedido_id_status_pedido_fk foreign key (id_status_pedido) REFERENCES dbpet.status_pedido(id),
 	constraint pedido_id_forma_envio_fk foreign key (id_forma_envio) REFERENCES dbpet.forma_envio(id),
-	constraint pedido_id_usuario_fk foreign key (id_usuario) REFERENCES dbpet.usuario(id)
+	constraint pedido_id_usuario_fk foreign key (id_usuario) REFERENCES dbpet.usuario(id),
+	constraint pedido_id_endereco_fk foreign key (id_endereco) references dbpet.endereco(id)
 );
 
 -- Pagamento
