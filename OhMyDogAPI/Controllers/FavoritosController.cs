@@ -15,7 +15,7 @@ namespace OhMyDogAPI.Controllers
         }
 
         [HttpGet("{idUsuario}")]
-        public async Task<ActionResult> BuscarCarrinho([FromRoute] int idUsuario)
+        public async Task<ActionResult> BuscarFavoritos([FromRoute] int idUsuario)
         {
             try
             {
@@ -29,7 +29,7 @@ namespace OhMyDogAPI.Controllers
         }
 
         [HttpPost("item/adicionar")]
-        public async Task<ActionResult> AdicionarItemAoCarrinho([FromBody] ItemFavoritos item)
+        public async Task<ActionResult> AdicionarItemAoFavoritos([FromBody] ItemFavoritos item)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace OhMyDogAPI.Controllers
         }
 
         [HttpDelete("item/excluir")]
-        public async Task<IActionResult> ExcluirItemDoCarrinho([FromBody] ItemFavoritos item)
+        public async Task<IActionResult> ExcluirItemDoFavoritos([FromBody] ItemFavoritos item)
         {
             try
             {
