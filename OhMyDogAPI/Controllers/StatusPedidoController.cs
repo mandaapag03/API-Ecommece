@@ -29,7 +29,7 @@ namespace OhMyDogAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> BuscarCategoria(int id)
+        public async Task<IActionResult> BuscarStatusPedido(int id)
         {
             try
             {

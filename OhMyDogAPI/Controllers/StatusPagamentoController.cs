@@ -14,7 +14,7 @@ namespace OhMyDogAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ListarStatusPedido()
+        public async Task<IActionResult> ListarStatusPagamento()
         {
             try
             {
@@ -27,7 +27,7 @@ namespace OhMyDogAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> BuscarCategoria(int id)
+        public async Task<IActionResult> BuscarStatusPagamento(int id)
         {
             try
             {
