@@ -17,6 +17,7 @@ namespace OhMyDogAPI.Repository
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                     new Claim(ClaimTypes.Email, user.Email),
                     new Claim(ClaimTypes.Role, user.TipoUsuarioId.ToString())
                 }),
