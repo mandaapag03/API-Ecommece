@@ -16,7 +16,7 @@ create table if not exists  dbpet.usuario (
 	cpf varchar(20) not null unique,
 	telefone varchar(15) not null unique,
 	email varchar(60) not null unique,
-	senha varchar(30) not null unique,
+	senha varchar(30) not null,
 	is_active bool not null default true,
 	constraint usuarios_id_tipo_usuario_fk foreign key (id_tipo_usuario) REFERENCES dbpet.tipo_usuario(id),
 	CONSTRAINT email_invalid CHECK (email like '%@%'),
