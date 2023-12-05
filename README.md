@@ -1,4 +1,4 @@
-# API-Ecommerce
+# OhMyDog-API
 - Grupo:
 - Amanda Pagani Lima - 2200564
 - Bruno Vinícius Alves Santos - 2100913
