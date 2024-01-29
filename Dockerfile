@@ -11,4 +11,5 @@ RUN dotnet publish -c Release -o out
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /App/OhMyDogAPI
 COPY --from=build-env /App/OhMyDogAPI/out .
+WORKDIR /App/OhMyDog-API/OhMyDogAPI/
 ENTRYPOINT [ "dotnet", "OhMyDogAPI.dll" ]
