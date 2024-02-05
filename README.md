@@ -7,7 +7,7 @@
 - Gustavo Farias Freire - 2201292
 - Michel Vacari Cruz - 2200102
 
-#Para rodar o docker compose
+# Para rodar o docker compose
 Requisitos: 
 - Ter o docker instalado. Caso vc tenha Windows, acesse meu tutorial de instalação
 https://www.instagram.com/p/C2tlM4wOPa2/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
