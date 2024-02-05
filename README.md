@@ -20,8 +20,10 @@ docker-compose up
 http://localhost:5009/swagger/index.html
 4. Acessar banco de dados
     a. Acesse o PgAdmin no link: http://localhost:15432/
+   
     Usuario: amanda.pagani@aluno.faculdadeimpacta.com.br
     Senha: PgAdmin2023!
+
     b. Botão direito na aba Servers > Register > Server...
     c. Na aba General, preencha o Name. Na aba Connection preencha Host, Port, Maintenance database, Username, Password. Clique em save
         
