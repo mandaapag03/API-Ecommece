@@ -1,0 +1,54 @@
+services:
+  db:
+    image: postgres:latest
+    build: postgres:latest
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
+    networks:
+      - postgres-network
+    container_name: db-ecommerce-postgres
+    volumes:
+      - /home/amanda/PostgreSQL:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DATABASE: db-ecommerce
+      POSTGRES_PASSWORD: Postgres2023!
+
+  pgAdmin:
+    image: dpage/pgadmin4
+    build: dpage/pgadmin4
+    ports:
+      - "15432:80"
+    networks:
+      - postgres-network
+    container_name: pgadmin
+    volumes:
+      - /home/amanda/pgadmin:/var/lib/pgadmin/data
+    environment:
+      PGADMIN_DEFAULT_EMAIL: amanda.pagani@aluno.faculdadeimpacta.com.br
+      PGADMIN_DEFAULT_PASSWORD: PgAdmin2023!
+
+  ohMyDogApi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: oh-my-dog-api
+    container_name: ohmydogapi
+    volumes:
+      - C:/Users/pagan/OneDrive/Documentos/Faculdade/ADS/Software_Project/OhMyDog-API/OhMyDogAPI:/var/lib/omdapi
+    links:
+      - db
+    # environment:
+    #   - DB_HOST: db
+    #   - DB_USERNAME: postgres
+    #   - DB_PASSWORD: Postgres2023!
+    depends_on:
+      - db
+    ports:
+      - "5009:8080"
+    networks:
+      - postgres-network
+networks:
+  postgres-network:
+    driver: bridge
