@@ -8,7 +8,7 @@ services:
     ports:
       - "5009:8080"
     networks:
-      - postgres-network
+      - omd-network
 
   db:
     image: postgres:latest
@@ -16,7 +16,7 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - postgres-network
+      - omd-network
     container_name: db-ecommerce-postgres
     volumes:
       - /home/amanda/PostgreSQL:/var/lib/postgresql/data
@@ -30,7 +30,7 @@ services:
     ports:
       - "15432:80"
     networks:
-      - postgres-network
+      - omd-network
     container_name: pgadmin
     volumes:
       - /home/amanda/pgadmin:/var/lib/pgadmin/data
@@ -39,5 +39,5 @@ services:
       PGADMIN_DEFAULT_PASSWORD: PgAdmin2023!
 
 networks:
-  postgres-network:
+  omd-network:
     driver: bridge
