@@ -9,41 +9,51 @@
 }
 
 {
-    "cep": "78735437",
-    "logradouro": "Rua A-35",
-    "numero": 625,
-    "bairro": "Parque Sagrada Família",
-    "cidade": "Rondonópolis",
-    "uf": "MT"
+  "cpf": "38484634825",
+  "nomeCompleto": "Amanda Pagani Lima",
+  "email": "amanda.pagani@gmail.com",
+  "senha": "12345678",
+  "telefone": "11994359644",
+  "isActive": true,
+  "tipoUsuarioId": 1
 }
 
 {
-    "cpf": "25814774185",
-    "nomeCompleto": "Gabriel Heitor Lima",
-    "email": "gabriel@gmail.com",
-    "senha": "12345678",
-    "telefone": "11995632847",
-    "isActive": true,
-    "tipoUsuarioId": 1
- }
-{
-	"cep": "60763710",
-	"logradouro": "Rua Coração de Maria",
-	"numero": 500,
-	"bairro": "Conjunto Esperança",
-	"cidade": "Fortaleza",
-	"uf": "CE",
-	"complemento": "Pq. Lagoa"
+  "cep": "78735437",
+  "logradouro": "Rua A-35",
+  "numero": 625,
+  "bairro": "Parque Sagrada Família",
+  "cidade": "Rondonópolis",
+  "uf": "MT"
 }
 
 {
-    "cep": "25734537",
-    "logradouro": "Rua Sabrina",
-    "numero": 65,
-    "bairro": "Parque Galinha Seca",
-    "cidade": "Rondonópolis",
-    "uf": "MT"
- }
+  "cpf": "25814774185",
+  "nomeCompleto": "Gabriel Heitor Lima",
+  "email": "gabriel@gmail.com",
+  "senha": "12345678",
+  "telefone": "11995632847",
+  "isActive": true,
+  "tipoUsuarioId": 1
+}
+{
+  "cep": "60763710",
+  "logradouro": "Rua Coração de Maria",
+  "numero": 500,
+  "bairro": "Conjunto Esperança",
+  "cidade": "Fortaleza",
+  "uf": "CE",
+  "complemento": "Pq. Lagoa"
+}
+
+{
+  "cep": "25734537",
+  "logradouro": "Rua Sabrina",
+  "numero": 65,
+  "bairro": "Parque Galinha Seca",
+  "cidade": "Rondonópolis",
+  "uf": "MT"
+}
 
 {
   "nome": "Antipulgas e Carrapatos MSD Bravecto para Cães de 4,5 a 10Kg - 250 mg",
@@ -53,19 +63,18 @@
   "isActive": true,
   "categoriaId": 11
 }
-
 // pedido
 }
   "usuarioId": 1,
-  "formaPagamentoId": 1,
-  "formaEnvioId": 1,
-  "enderecoId": 1,
-  "qtd_parecelas": 1,
-  "total": 154.99,
-  "itensPedido": [
-    {
-      "produtoId": 1,
-      "quantidade": 1
-    }
-  ]
+"formaPagamentoId": 1,
+"formaEnvioId": 1,
+"enderecoId": 1,
+"qtd_parecelas": 1,
+"total": 154.99,
+"itensPedido": [
+{
+  "produtoId": 1,
+  "quantidade": 1
+}
+]
 }
