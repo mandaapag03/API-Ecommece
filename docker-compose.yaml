@@ -4,7 +4,7 @@ services:
     image: oh-my-dog-api
     container_name: ohmydogapi
     volumes:
-      - C:/Users/pagan/OneDrive/Documentos/Faculdade/ADS/Software_Project/OhMyDog-API/OhMyDogAPI:/var/lib/omdapi
+      - ./OhMyDog-API/OhMyDogAPI:/var/lib/omdapi
     ports:
       - "5009:8080"
     networks:
