@@ -1,4 +1,4 @@
-﻿namespace OhMyDogAPI.Auth
+﻿namespace UserAPI.Auth
 {
     public static class AppSettings
     {
