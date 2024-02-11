@@ -3,21 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OhMyDogAPI", "OhMyDogAPI\OhMyDogAPI.csproj", "{EC9E8828-BF57-4000-ADDF-BF6922034A79}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VerifyNullableObject", "VerifyNullableObject\VerifyNullableObject.csproj", "{A41B9ADB-2C23-4E6A-BCCC-F21104FB9399}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAPI", "UserAPI\UserAPI.csproj", "{3AC47B83-0519-48A7-BE05-9417B34251F5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductAPI", "ProductAPI\ProductAPI.csproj", "{FA20D256-683A-475F-8CF1-0FB80CE8AABA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentAPI", "PaymentAPI\PaymentAPI.csproj", "{5F10E01C-DBE6-42FA-B46D-A26A1617F130}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentAPI", "PaymentAPI\PaymentAPI.csproj", "{5F10E01C-DBE6-42FA-B46D-A26A1617F130}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryAPI", "InventoryAPI\InventoryAPI.csproj", "{CF3E0F73-C1F1-4FBB-9827-9A4096E0EB0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryAPI", "InventoryAPI\InventoryAPI.csproj", "{CF3E0F73-C1F1-4FBB-9827-9A4096E0EB0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromotionAPI", "PromotionAPI\PromotionAPI.csproj", "{A284F9FA-FB05-4DF1-9D09-56CCBE0E78AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromotionAPI", "PromotionAPI\PromotionAPI.csproj", "{A284F9FA-FB05-4DF1-9D09-56CCBE0E78AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderAPI", "OrderAPI\OrderAPI.csproj", "{D73C50E8-50E5-4B67-A2AF-39250DBE131A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderAPI", "OrderAPI\OrderAPI.csproj", "{D73C50E8-50E5-4B67-A2AF-39250DBE131A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EC9E8828-BF57-4000-ADDF-BF6922034A79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC9E8828-BF57-4000-ADDF-BF6922034A79}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EC9E8828-BF57-4000-ADDF-BF6922034A79}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EC9E8828-BF57-4000-ADDF-BF6922034A79}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A41B9ADB-2C23-4E6A-BCCC-F21104FB9399}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A41B9ADB-2C23-4E6A-BCCC-F21104FB9399}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A41B9ADB-2C23-4E6A-BCCC-F21104FB9399}.Release|Any CPU.ActiveCfg = Release|Any CPU

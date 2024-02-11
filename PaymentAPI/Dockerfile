@@ -4,11 +4,11 @@ WORKDIR /App
 
 COPY . ./
 
-WORKDIR /App/OrderAPI
+WORKDIR /App/PaymentAPI
 RUN dotnet restore
 RUN dotnet publish -c Release -o out
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
-WORKDIR /App/OrderAPI
-COPY --from=build-env /App/OrderAPI/out .
-ENTRYPOINT [ "dotnet", "OrderAPI.dll" ]
+WORKDIR /App/PaymentAPI
+COPY --from=build-env /App/PaymentAPI/out .
+ENTRYPOINT [ "dotnet", "PaymentAPI.dll" ]

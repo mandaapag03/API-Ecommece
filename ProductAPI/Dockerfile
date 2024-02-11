@@ -4,11 +4,11 @@ WORKDIR /App
 
 COPY . ./
 
-WORKDIR /App/OrderAPI
-RUN dotnet restore
+WORKDIR /App/ProductAPI
+RUN dotnet restore ./ProductAPI.csproj
 RUN dotnet publish -c Release -o out
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
-WORKDIR /App/OrderAPI
-COPY --from=build-env /App/OrderAPI/out .
-ENTRYPOINT [ "dotnet", "OrderAPI.dll" ]
+WORKDIR /App/ProductAPI
+COPY --from=build-env /App/ProductAPI/out .
+ENTRYPOINT [ "dotnet", "ProductAPI.dll" ]

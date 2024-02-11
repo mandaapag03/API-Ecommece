@@ -10,6 +10,8 @@ namespace OrderAPI.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<OrderStatus> OrderStatus { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<FavoriteItem> FavoriteItems { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
@@ -24,6 +26,8 @@ namespace OrderAPI.Data
             builder.ApplyConfiguration(new OrderMap());
             builder.ApplyConfiguration(new OrderItemMap());
             builder.ApplyConfiguration(new OrderStatusMap());
+            builder.ApplyConfiguration(new FavoriteItemMap());
+            builder.ApplyConfiguration(new CartItemMap());
         }
     }
 }
