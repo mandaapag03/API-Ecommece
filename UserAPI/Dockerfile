@@ -4,10 +4,9 @@ WORKDIR /App
 
 COPY . ./
 
-FROM verify-nullable-object-image
 WORKDIR /App/UserAPI
-RUN dotnet restore ../UserAPI.csproj
-RUN dotnet publish -c Release -o out ../UserAPI.csproj
+RUN dotnet restore
+RUN dotnet publish -c Release -o out 
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /App/UserAPI

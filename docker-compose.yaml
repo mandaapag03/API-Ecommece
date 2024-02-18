@@ -1,12 +1,12 @@
 services:
   UserAPI:
-    build: ./UserAPI
     image: omg-user-api
+    build: ./UserAPI
     container_name: user-api
     volumes:
-      - ./system/OhMyDogAPI:/var/lib/omdapi
+      - ./UserAPI/system/OhMyDogAPI:/var/lib/omdapi
     ports:
-      - "5009:8080"
+      - "5010:8080"
     networks:
       - omd-network
 
@@ -17,53 +17,53 @@ services:
     volumes:
       - ./system/OhMyDogAPI:/var/lib/omdapi
     ports:
-      - "5009:8080"
+      - "5069:8080"
     networks:
       - omd-network
 
-  ProductAPI:
-    build: ./ProductAPI
-    image: omg-product-api
-    container_name: product-api
-    volumes:
-      - ./system/OhMyDogAPI:/var/lib/omdapi
-    ports:
-      - "5009:8080"
-    networks:
-      - omd-network
+  # ProductAPI:
+  #   build: ./ProductAPI
+  #   image: omg-product-api
+  #   container_name: product-api
+  #   volumes:
+  #     - ./system/OhMyDogAPI:/var/lib/omdapi
+  #   ports:
+  #     - "5009:8080"
+  #   networks:
+  #     - omd-network
 
-  PaymentAPI:
-    build: ./PaymentAPI
-    image: omg-payment-api
-    container_name: payment-api
-    volumes:
-      - ./system/OhMyDogAPI:/var/lib/omdapi
-    ports:
-      - "5009:8080"
-    networks:
-      - omd-network
+  # PaymentAPI:
+  #   build: ./PaymentAPI
+  #   image: omg-payment-api
+  #   container_name: payment-api
+  #   volumes:
+  #     - ./system/OhMyDogAPI:/var/lib/omdapi
+  #   ports:
+  #     - "5009:8080"
+  #   networks:
+  #     - omd-network
 
-  OrderAPI:
-    build: ./OrderAPI
-    image: omg-order-api
-    container_name: order-api
-    volumes:
-      - ./system/OhMyDogAPI:/var/lib/omdapi
-    ports:
-      - "5009:8080"
-    networks:
-      - omd-network
+  # OrderAPI:
+  #   build: ./OrderAPI
+  #   image: omg-order-api
+  #   container_name: order-api
+  #   volumes:
+  #     - ./system/OhMyDogAPI:/var/lib/omdapi
+  #   ports:
+  #     - "5009:8080"
+  #   networks:
+  #     - omd-network
 
-  InventoryAPI:
-    build: ./InventoryAPI
-    image: omg-inventory-api
-    container_name: inventory-api
-    volumes:
-      - ./system/OhMyDogAPI:/var/lib/omdapi
-    ports:
-      - "5009:8080"
-    networks:
-      - omd-network
+  # InventoryAPI:
+  #   build: ./InventoryAPI
+  #   image: omg-inventory-api
+  #   container_name: inventory-api
+  #   volumes:
+  #     - ./system/OhMyDogAPI:/var/lib/omdapi
+  #   ports:
+  #     - "5009:8080"
+  #   networks:
+  #     - omd-network
 
   db:
     image: postgres:latest
