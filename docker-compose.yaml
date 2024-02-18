@@ -15,55 +15,55 @@ services:
     image: omg-promotion-api
     container_name: promotion-api
     volumes:
-      - ./system/OhMyDogAPI:/var/lib/omdapi
+      - ./PromotionAPI/system/OhMyDogAPI:/var/lib/omdapi
     ports:
       - "5069:8080"
     networks:
       - omd-network
 
-  # ProductAPI:
-  #   build: ./ProductAPI
-  #   image: omg-product-api
-  #   container_name: product-api
-  #   volumes:
-  #     - ./system/OhMyDogAPI:/var/lib/omdapi
-  #   ports:
-  #     - "5009:8080"
-  #   networks:
-  #     - omd-network
+  ProductAPI:
+    build: ./ProductAPI
+    image: omg-product-api
+    container_name: product-api
+    volumes:
+      - ./ProductAPI/system/OhMyDogAPI:/var/lib/omdapi
+    ports:
+      - "5051:8080"
+    networks:
+      - omd-network
 
-  # PaymentAPI:
-  #   build: ./PaymentAPI
-  #   image: omg-payment-api
-  #   container_name: payment-api
-  #   volumes:
-  #     - ./system/OhMyDogAPI:/var/lib/omdapi
-  #   ports:
-  #     - "5009:8080"
-  #   networks:
-  #     - omd-network
+  PaymentAPI:
+    build: ./PaymentAPI
+    image: omg-payment-api
+    container_name: payment-api
+    volumes:
+      - ./PaymentAPI/system/OhMyDogAPI:/var/lib/omdapi
+    ports:
+      - "5228:8080"
+    networks:
+      - omd-network
 
-  # OrderAPI:
-  #   build: ./OrderAPI
-  #   image: omg-order-api
-  #   container_name: order-api
-  #   volumes:
-  #     - ./system/OhMyDogAPI:/var/lib/omdapi
-  #   ports:
-  #     - "5009:8080"
-  #   networks:
-  #     - omd-network
+  OrderAPI:
+    build: ./OrderAPI
+    image: omg-order-api
+    container_name: order-api
+    volumes:
+      - ./OrderAPI/system/OhMyDogAPI:/var/lib/omdapi
+    ports:
+      - "5053:8080"
+    networks:
+      - omd-network
 
-  # InventoryAPI:
-  #   build: ./InventoryAPI
-  #   image: omg-inventory-api
-  #   container_name: inventory-api
-  #   volumes:
-  #     - ./system/OhMyDogAPI:/var/lib/omdapi
-  #   ports:
-  #     - "5009:8080"
-  #   networks:
-  #     - omd-network
+  InventoryAPI:
+    build: ./InventoryAPI
+    image: omg-inventory-api
+    container_name: inventory-api
+    volumes:
+      - ./InventoryAPI/system/OhMyDogAPI:/var/lib/omdapi
+    ports:
+      - "5082:8080"
+    networks:
+      - omd-network
 
   db:
     image: postgres:latest

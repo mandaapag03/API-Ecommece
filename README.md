@@ -16,8 +16,26 @@ https://www.instagram.com/p/C2tlM4wOPa2/?utm_source=ig_web_copy_link&igsh=MzRlOD
 git clone https://github.com/mandaapag03/OhMyDog-API.git
 2. Entre com o cmd na pasta do projeto e digite:
 docker-compose up
-3. Acesse a api na URL:
-http://localhost:5009/swagger/index.html
+3. Acesse as apis nas URLs:
+User API:
+http://localhost:5010/swagger/index.html
+
+Product API:
+http://localhost:5051/swagger/index.html
+
+Promotion API:
+http://localhost:5069/swagger/index.html
+
+Inventory API:
+http://localhost:5082/swagger/index.html
+
+Order API:
+http://localhost:5053/swagger/index.html
+
+Payment API:
+http://localhost:5228/swagger/index.html
+
+
 4. Acessar banco de dados
     a. Acesse o PgAdmin no link: http://localhost:15432/
    
