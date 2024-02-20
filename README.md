@@ -1,22 +1,27 @@
 # OhMyDog-API
-- Grupo:
-- Amanda Pagani Lima - 2200564
-- Bruno Vinícius Alves Santos - 2100913
-- Evany Marianne Alves Mota Folli - 2200798
-- Gustavo Emynem Izidre Ribeiro - 2200826
-- Gustavo Farias Freire - 2201292
-- Michel Vacari Cruz - 2200102
+**Grupo**:
+- Amanda Pagani Lima : 2200564 - (ADS 5A NOITE)
+- Bruno Vinícius Alves Santos : 2100913 - (ADS 5B NOITE)
+- Evany Marianne Alves Mota Folli : 2200798 - (ADS 5A NOITE)
+- Gustavo Emynem Izidre Ribeiro :  2200826 - (ADS 5A NOITE)
+- Gustavo Farias Freire : 2201292 - (ADS 5A NOITE)
+- Michel Vacari Cruz : 2200102 - (ADS 5A NOITE)
 
 # Para rodar o docker compose
 Requisitos: 
 - Ter o docker instalado. Caso vc tenha Windows, acesse meu tutorial de instalação
+
 https://www.instagram.com/p/C2tlM4wOPa2/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
 
 1. faça o clone do projeto:
-git clone https://github.com/mandaapag03/OhMyDog-API.git
-2. Entre com o cmd na pasta do projeto e digite:
-docker-compose up
-3. Acesse as apis nas URLs:
+   
+`git clone https://github.com/mandaapag03/OhMyDog-API.git`
+
+3. Entre com o cmd na pasta do projeto e digite:
+   
+`docker-compose up`
+
+5. Acesse as apis nas URLs:
 
 User API:
 http://localhost:5010/swagger/index.html
@@ -38,10 +43,12 @@ http://localhost:5228/swagger/index.html
 
 
 4. Acessar banco de dados
+   
     a. Acesse o PgAdmin no link: http://localhost:15432/
    
-    Usuario: amanda.pagani@aluno.faculdadeimpacta.com.br
-    Senha: PgAdmin2023!
+    `Usuario: amanda.pagani@aluno.faculdadeimpacta.com.br`
+   
+    `Senha: PgAdmin2023!`
 
     b. Botão direito na aba Servers > Register > Server...
     c. Na aba General, preencha o Name. Na aba Connection preencha Host, Port, Maintenance database, Username, Password. Clique em save
