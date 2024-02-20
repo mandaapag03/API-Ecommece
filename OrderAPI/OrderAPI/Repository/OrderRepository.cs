@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OrderAPI.Communication;
 using OrderAPI.Data;
 using OrderAPI.Model;
 using OrderAPI.Model.DTO;
@@ -12,11 +13,14 @@ namespace OrderAPI.Repository
     {
         private readonly DatabaseContext _context;
         private readonly OrderItemRepository _orderItemRepository;
+        private readonly PaymentCommunication _paymentCommunication;
 
-        public OrderRepository() 
+
+        public OrderRepository(IHttpClientFactory httpClientFactory) 
         {
             _context = new DatabaseContext();
             _orderItemRepository = new OrderItemRepository();
+            _paymentCommunication = new PaymentCommunication(httpClientFactory);
         }
         public async Task<object> Create(NewOrder newOrder)
         {
@@ -34,7 +38,14 @@ namespace OrderAPI.Repository
 
                 await _context.Orders.AddAsync(order);
                 _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
 
+            try
+            {
                 var lastOrderId = _context.Orders.Max(x => x.Id);
 
                 foreach (var item in newOrder.ItensPedido)
@@ -46,21 +57,30 @@ namespace OrderAPI.Repository
                         Quantidade = item.Quantidade
                     });
                 }
+
+                var order = await Get(lastOrderId);
+
+                var payment = await _paymentCommunication.CreatePayment(newOrder.UsuarioId, newOrder.FormaPagamentoId, newOrder.Qtd_parecelas, newOrder.Total, order.Id);
+
                 return new
                 {
                     order = await Get(lastOrderId),
-                    orderItems = await _orderItemRepository.GetAll(order.Id)
+                    orderItems = await _orderItemRepository.GetAll(order.Id),
+                    payment = payment
                 };
             }
             catch (Exception ex)
             {
+                var lastOrderId = _context.Orders.Max(x => x.Id);
+                await Cancel(lastOrderId);
+
                 throw new Exception(ex.Message);
             }
         }
 
-        public async Task<bool> Cancel(int idPedido)
+        public async Task<dynamic> Cancel(int orderId)
         {
-            var order = await Get(idPedido);
+            var order = await Get(orderId);
             order.StatusPedidoId = (int) EOrderStatus.Cancelado;
 
             try
@@ -68,7 +88,13 @@ namespace OrderAPI.Repository
                 _context.Orders.Update(order);
                 _context.SaveChanges();
 
-                return true;
+                var payment = await _paymentCommunication.CancelPayment(orderId);
+
+                return new
+                {
+                    order = await Get(orderId),
+                    payment = payment
+                };
             }
             catch (Exception ex)
             {
@@ -80,6 +106,7 @@ namespace OrderAPI.Repository
         {
             return await _context.Orders
                 .Include(x => x.StatusPedido)
+                .Include(x => x.FormaEnvio)
                 .AsNoTracking()
                 .ToListAsync();
         }

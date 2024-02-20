@@ -17,6 +17,7 @@ git clone https://github.com/mandaapag03/OhMyDog-API.git
 2. Entre com o cmd na pasta do projeto e digite:
 docker-compose up
 3. Acesse as apis nas URLs:
+
 User API:
 http://localhost:5010/swagger/index.html
 

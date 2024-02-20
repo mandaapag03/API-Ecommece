@@ -4,13 +4,13 @@ namespace UserAPI.Model.Interfaces
 {
     public interface IUserRepository
     {
-        List<User> GetAll();
-        User? GetById(int id);
-        User? GetByCpf(string cpf);
-        User Create(User user);
-        User Login(Credentials credentials);
-        User Update(User user);
-        User Disable(int id);
-        User Enable(int id);
+        Task<List<User>> GetAll();
+        Task<User>? GetById(int id);
+        Task<User>? GetByCpf(string cpf);
+        Task<User> Create(User user);
+        Task<User> Login(Credentials credentials);
+        Task<User> Update(User user);
+        Task<User> Disable(int id);
+        Task<User> Enable(int id);
     }
 }

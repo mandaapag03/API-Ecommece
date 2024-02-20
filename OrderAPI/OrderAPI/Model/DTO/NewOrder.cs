@@ -8,11 +8,6 @@
         public int EnderecoId { get; set; }
         public int Qtd_parecelas { get; set; } = 1;
         public double Total { get; set; }
-        public List<ItemPedidoComQtd> ItensPedido { get; set; }
-    }
-    public class ItemPedidoComQtd
-    {
-        public int ProdutoId { get; set; }
-        public int Quantidade { get; set; }
+        public List<OrderItemWithQnt> ItensPedido { get; set; }
     }
 }

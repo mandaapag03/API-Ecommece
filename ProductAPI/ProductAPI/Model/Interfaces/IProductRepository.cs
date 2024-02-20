@@ -2,11 +2,11 @@
 {
     public interface IProductRepository
     {
-        List<Product> GetAll();
-        Product GetById(int id);
-        Product Create(Product produto);
-        Product Update(Product produto);
-        Product Disable(int id);
-        Product Enable(int id);
+        Task<List<Product>> GetAll();
+        Task<Product> GetById(int id);
+        Task<Product> Create(Product produto);
+        Task<Product> Update(Product produto);
+        Task<Product> Disable(int id);
+        Task<Product> Enable(int id);
     }
 }

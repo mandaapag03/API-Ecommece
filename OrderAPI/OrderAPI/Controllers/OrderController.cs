@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OrderAPI.Communication;
 using OrderAPI.Model;
 using OrderAPI.Model.DTO;
 using OrderAPI.Model.Enuns;
@@ -12,9 +13,9 @@ namespace OrderAPI.Controllers
     {
         private readonly OrderRepository _orderRepository;
 
-        public OrderController()
+        public OrderController(IHttpClientFactory httpClientFactory)
         {
-            _orderRepository = new OrderRepository();
+            _orderRepository = new OrderRepository(httpClientFactory);
         }
 
         [HttpGet]
@@ -62,17 +63,10 @@ namespace OrderAPI.Controllers
             try
             {
                 var order = await _orderRepository.Get(id);
-                //var pagamento = await _pagamentoRepository.GetPagamentoByorder(order.Id);
 
-                var IsCanceled = await _orderRepository.Cancel(id);
+                var canceledOrder = await _orderRepository.Cancel(id);
 
-                //if (IsCancelado)
-                //{
-                //    if (pagamento.StatusPagamentoId == (int)EOrderStatus.Pendente)
-                //        await _pagamentoRepository.CancelarPagamento(pagamento.Id);
-                //}
-
-                return Ok(IsCanceled);
+                return Ok(canceledOrder);
             }
             catch (Exception ex)
             {

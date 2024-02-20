@@ -30,7 +30,7 @@ namespace OrderAPI.Controllers
         }
 
         [HttpGet("{orderId}/{orderItemId}")]
-        public async Task<ActionResult> GetItemsByOrder([FromQuery]int orderId, [FromQuery] int orderItemId)
+        public async Task<ActionResult> GetItemsByOrder(int orderId, int orderItemId)
         {
             try
             {

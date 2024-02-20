@@ -13,41 +13,41 @@ namespace ProductAPI.Repository
         {
             _context = new DatabaseContext();
         }
-        public List<Product> GetAll()
+        public async Task<List<Product>> GetAll()
         {
-            return _context.Products
+            return await _context.Products
                 .AsNoTracking()
                 .Include(p => p.Categoria)
                 .Include(c => c.Categoria.SubCategoria)
-                .ToList();
+                .ToListAsync();
         }
 
-        public Product GetById(int id)
+        public async Task<Product> GetById(int id)
         {
-            var result = _context.Products
+            var result = await _context.Products
                 .Include(p => p.Categoria)
                 .Include(c => c.Categoria.SubCategoria)
-                .FirstOrDefault(p => p.Id == id);
+                .FirstOrDefaultAsync(p => p.Id == id);
 
             return NullOrEmptyVariable<Product>.ThrowIfNull(result, "Produto não encontrado");
         }
 
-        public Product Create(Product produto)
+        public async Task<Product> Create(Product produto)
         {
-            _context.Products.Add(produto);
+            await _context.Products.AddAsync(produto);
             _context.SaveChanges();
 
-            var result = _context.Products
+            var result = await _context.Products
                 .Include(p => p.Categoria)
-                .FirstOrDefault(p => p.Nome == produto.Nome);
+                .FirstOrDefaultAsync(p => p.Nome == produto.Nome);
 
             return NullOrEmptyVariable<Product>.ThrowIfNull(result, "Não foi possível cadastrar seu produto, tente mais tarde.");
         }
-        public Product Update(Product produto)
+        public async Task<Product> Update(Product produto)
         {
-            var oldProduct = _context.Products.FirstOrDefault(p => p.Id == produto.Id);
-            if (oldProduct == null)
-                throw new Exception("Produto não encontrado");
+            var oldProduct = await _context.Products.FirstOrDefaultAsync(p => p.Id == produto.Id);
+
+            NullOrEmptyVariable<Product>.ThrowIfNull(oldProduct, "Produto não encontrado");
 
             oldProduct.Nome = produto.Nome;
             oldProduct.PrecoUnitario = produto.PrecoUnitario;
@@ -58,12 +58,12 @@ namespace ProductAPI.Repository
             _context.Products.Update(oldProduct);
             _context.SaveChanges();
 
-            return GetById(oldProduct.Id);
+            return await GetById(oldProduct.Id);
         }
 
-        public Product Disable(int id)
+        public async Task<Product> Disable(int id)
         {
-            var oldProduct = _context.Products.FirstOrDefault(p => p.Id == id);
+            var oldProduct = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
             NullOrEmptyVariable<Product>.ThrowIfNull(oldProduct, "Produto não encontrado");
 
             oldProduct.IsActive = false;
@@ -71,12 +71,12 @@ namespace ProductAPI.Repository
             _context.Products.Update(oldProduct);
             _context.SaveChanges();
 
-            return GetById(id);
+            return await GetById(id);
         }
 
-        public Product Enable(int id)
+        public async Task<Product> Enable(int id)
         {
-            var oldProduct = _context.Products.FirstOrDefault(p => p.Id == id);
+            var oldProduct = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
             NullOrEmptyVariable<Product>.ThrowIfNull(oldProduct, "Produto não encontrado");
 
             oldProduct.IsActive = true;
@@ -84,7 +84,7 @@ namespace ProductAPI.Repository
             _context.Products.Update(oldProduct);
             _context.SaveChanges();
 
-            return GetById(id);
+            return await GetById(id);
         }
     }
 }

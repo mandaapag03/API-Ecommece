@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PaymentAPI.Model;
 using PaymentAPI.Repository;
 
 namespace PaymentAPI.Controllers
@@ -59,6 +60,19 @@ namespace PaymentAPI.Controllers
             try
             {
                 return Ok(await _paymentRepository.Get(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("create/{orderId}")]
+        public async Task<IActionResult> Create(Payment payment, int orderId)
+        {
+            try
+            {
+                return Ok(await _paymentRepository.Create(payment, orderId));
             }
             catch (Exception ex)
             {

@@ -17,17 +17,17 @@ namespace ProductAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult ListProducts() 
+        public async Task<IActionResult> ListProducts() 
         {
-            return Ok(_productRepository.GetAll());
+            return Ok(await _productRepository.GetAll());
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetProductById(int id)
+        public async Task<IActionResult> GetProductById(int id)
         {
             try
             {
-                return Ok(_productRepository.GetById(id));
+                return Ok(await _productRepository.GetById(id));
             }
             catch (Exception ex)
             {
@@ -36,11 +36,11 @@ namespace ProductAPI.Controllers
         }
 
         [HttpPost("register")]
-        public IActionResult Register(Product product)
+        public async Task<IActionResult> Register(Product product)
         {
             try
             {
-                return Ok(_productRepository.Create(product));
+                return Ok(await _productRepository.Create(product));
             }
             catch (Exception ex)
             {
@@ -49,12 +49,12 @@ namespace ProductAPI.Controllers
         }
 
         [HttpPut("change/{id}")]
-        public IActionResult ChangeProduct(Product product, int id)
+        public async Task<IActionResult> ChangeProduct(Product product, int id)
         {
             try
             {
                 product.Id = id;
-                return Ok(_productRepository.Update(product));
+                return Ok(await _productRepository.Update(product));
             }
             catch (Exception ex)
             {
@@ -63,11 +63,11 @@ namespace ProductAPI.Controllers
         }
 
         [HttpPut("change")]
-        public IActionResult ChangeProduct(Product product)
+        public async Task<IActionResult> ChangeProduct(Product product)
         {
             try
             {
-                return Ok(_productRepository.Update(product));
+                return Ok(await _productRepository.Update(product));
             }
             catch (Exception ex)
             {
@@ -76,11 +76,11 @@ namespace ProductAPI.Controllers
         }
 
         [HttpPut("inactivate/{id}")]
-        public IActionResult Inactivate(int id)
+        public async Task<IActionResult> Inactivate(int id)
         {
             try
             {
-                return Ok(_productRepository.Disable(id));
+                return Ok(await _productRepository.Disable(id));
             }
             catch (Exception ex)
             {
@@ -89,11 +89,11 @@ namespace ProductAPI.Controllers
         }
 
         [HttpPut("reactivate/{id}")]
-        public IActionResult Reactivate(int id)
+        public async Task<IActionResult> Reactivate(int id)
         {
             try
             {
-                return Ok(_productRepository.Enable(id));
+                return Ok(await _productRepository.Enable(id));
             }
             catch (Exception ex)
             {

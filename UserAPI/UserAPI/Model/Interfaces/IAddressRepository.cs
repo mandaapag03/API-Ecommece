@@ -2,10 +2,10 @@
 {
     public interface IAddressRepository
     {
-        List<Address> GetAll(int UserId);
-        Address? Get(int id);
-        Address? Create(Address Address);
-        Address? Update(Address Address);
-        bool? Delete(int id);
+        Task<List<Address>> GetAll(int UserId);
+        Task<Address?> Get(int id);
+        Task<Address?> Create(Address Address);
+        Task<Address?> Update(Address Address);
+        Task<bool?> Delete(int id);
     }
 }

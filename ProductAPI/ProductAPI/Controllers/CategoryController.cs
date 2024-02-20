@@ -16,11 +16,11 @@ namespace ProductAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult List() 
+        public async Task<IActionResult> List() 
         {
             try
             {
-                return Ok(_categoryRepository.GetAll());
+                return Ok(await _categoryRepository.GetAll());
             }
             catch (Exception ex) 
             {
@@ -29,11 +29,11 @@ namespace ProductAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Buscarcategory(int id)
+        public async Task<IActionResult> Buscarcategory(int id)
         {
             try
             {
-                return Ok(_categoryRepository.GetById(id));
+                return Ok(await _categoryRepository.GetById(id));
             }
             catch (Exception ex) 
             {
@@ -42,11 +42,11 @@ namespace ProductAPI.Controllers
         }
 
         [HttpGet("subCategories/list/{id}")]
-        public IActionResult ListSubCategories(int id)
+        public async Task<IActionResult> ListSubCategories(int id)
         {
             try
             {
-                return Ok(_categoryRepository.GetSubCategoriesById(id));
+                return Ok(await _categoryRepository.GetSubCategoriesById(id));
             }
             catch (Exception ex)
             {
@@ -55,11 +55,11 @@ namespace ProductAPI.Controllers
         }
 
         [HttpPost("create")]
-        public IActionResult Insert(Category category)
+        public async Task<IActionResult> Insert(Category category)
         {
             try
             {
-                return Ok(_categoryRepository.Create(category));
+                return Ok(await _categoryRepository.Create(category));
             }
             catch (Exception ex)
             {
@@ -68,11 +68,11 @@ namespace ProductAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteCategory(int id)
+        public async Task<IActionResult> DeleteCategory(int id)
         {
             try
             {
-                return Ok(_categoryRepository.Delete(id));
+                return Ok(await _categoryRepository.Delete(id));
             }
             catch (Exception ex)
             {

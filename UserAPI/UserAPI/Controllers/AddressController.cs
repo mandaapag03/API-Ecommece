@@ -16,11 +16,11 @@ namespace UserAPI.Controllers
         }
 
         [HttpGet("list/{userId}")]
-        public IActionResult List(int userId)
+        public async Task<IActionResult> List(int userId)
         {
             try
             {
-                return Ok(_addressRepository.GetAll(userId));
+                return Ok(await _addressRepository.GetAll(userId));
             }
             catch (Exception ex)
             {
@@ -29,11 +29,11 @@ namespace UserAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Find(int id)
+        public async Task<IActionResult> Find(int id)
         {
             try
             {
-                return Ok(_addressRepository.Get(id));
+                return Ok(await _addressRepository.Get(id));
             }
             catch (Exception ex)
             {
@@ -42,13 +42,13 @@ namespace UserAPI.Controllers
         }
 
         [HttpPost("register/{userId}")]
-        public IActionResult Insert([FromBody] Address address, [FromRoute] int userId)
+        public async Task<IActionResult> Insert([FromBody] Address address, [FromRoute] int userId)
         {
             try
             {
                 address.UsuarioId = userId;
 
-                return Ok(_addressRepository.Create(address));
+                return Ok(await _addressRepository.Create(address));
             }
             catch (Exception ex)
             {
@@ -57,11 +57,11 @@ namespace UserAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                return Ok(_addressRepository.Delete(id));
+                return Ok(await _addressRepository.Delete(id));
             }
             catch (Exception ex)
             {

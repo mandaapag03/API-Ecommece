@@ -57,6 +57,8 @@ namespace PaymentAPI.Repository
         public async Task<List<Payment>> GetAll()
         {
             return await _context.Payments
+                .Include(x => x.StatusPagamento)
+                .Include(x => x.FormaPagamento)
                 .AsNoTracking()
                 .ToListAsync();
         }

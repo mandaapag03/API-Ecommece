@@ -20,7 +20,7 @@ namespace OrderAPI.Repository
             return NullOrEmptyVariable<OrderItem>.ThrowIfNull( 
                 await _context.OrderItems
                 .Where(x => x.PedidoId == orderId)
-                .FirstOrDefaultAsync(x => x.Id == orderId)
+                .FirstOrDefaultAsync(x => x.Id == orderItemId)
                 );
         }
 

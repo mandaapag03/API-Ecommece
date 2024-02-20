@@ -9,42 +9,42 @@ namespace UserAPI.Repository
     public class AddressRepository : IAddressRepository
     {
         private readonly DatabaseContext _context;
-        public AddressRepository() 
-        { 
+        public AddressRepository()
+        {
             _context = new DatabaseContext();
         }
 
-        public Address? Create(Address address)
+        public async Task<Address>? Create(Address address)
         {
             try
             {
-                var user = _context.Users.FirstOrDefault(u => address.UsuarioId == u.Id);
+                var user = await _context.Users.FirstOrDefaultAsync(u => address.UsuarioId == u.Id);
                 NullOrEmptyVariable<User>.ThrowIfNull(user, "Usuário não encontrado");
 
-                _context.Addresses.Add(address);
+                await _context.Addresses.AddAsync(address);
                 _context.SaveChanges();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-            return Get(address.Id);
+            return await Get(address.Id);
         }
 
-        public bool? Delete(int id)
+        public async Task<bool?> Delete(int id)
         {
-            var address = Get(id);
+            var address = await Get(id);
             NullOrEmptyVariable<Address>.ThrowIfNull(address, "Endereço não encontrado");
-            
+
             _context.Addresses.Remove(address);
             _context.SaveChanges();
 
             return true;
         }
 
-        public List<Address> GetAll(int UserId)
+        public async Task<List<Address>> GetAll(int UserId)
         {
-            if(!_context.Users.Where(u => u.Id == UserId).Any())
+            if (!_context.Users.Where(u => u.Id == UserId).Any())
             {
                 throw new Exception("Usuário não encontrado");
             }
@@ -55,16 +55,16 @@ namespace UserAPI.Repository
                 .ToList();
         }
 
-        public Address? Get(int id)
+        public async Task<Address>? Get(int id)
         {
             return NullOrEmptyVariable<Address>.ThrowIfNull(
-                _context.Addresses.FirstOrDefault(e => e.Id == id), "Endereço não encontrado");
+                await _context.Addresses.FirstOrDefaultAsync(e => e.Id == id), "Endereço não encontrado");
         }
-        public Address Update(Address address)
+        public async Task<Address> Update(Address address)
         {
             try
             {
-                var oldAddress = _context.Addresses.FirstOrDefault(e => e.Id == address.Id);
+                var oldAddress = await _context.Addresses.FirstOrDefaultAsync(e => e.Id == address.Id);
                 NullOrEmptyVariable<Address>.ThrowIfNull(address, "Endereço não encontrado");
 
                 oldAddress.Logradouro = address.Logradouro;

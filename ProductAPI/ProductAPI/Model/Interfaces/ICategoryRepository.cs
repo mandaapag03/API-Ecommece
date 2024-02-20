@@ -2,10 +2,10 @@
 {
     public interface ICategoryRepository
     {
-        List<Category>? GetAll();
-        Category GetById(int id);
-        List<Category>? GetSubCategoriesById(int id);
-        Category Create(Category category);
-        bool Delete(int id);
+        Task<List<Category>?> GetAll();
+        Task<Category> GetById(int id);
+        Task<List<Category>?> GetSubCategoriesById(int id);
+        Task<Category> Create(Category category);
+        Task<bool> Delete(int id);
     }
 }

@@ -16,11 +16,11 @@ namespace UserAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult ListUsers() 
+        public async Task<IActionResult> ListUsers()
         {
             try
             {
-                return Ok(_userRepository.GetAll());
+                return Ok(await _userRepository.GetAll());
             }
             catch (Exception ex)
             {
@@ -30,11 +30,11 @@ namespace UserAPI.Controllers
         }
 
         [HttpGet("find/{cpf}")]
-        public IActionResult FindUser(string cpf)
+        public async Task<IActionResult> FindUser(string cpf)
         {
             try
             {
-                return Ok(_userRepository.GetByCpf(cpf));
+                return Ok(await _userRepository.GetByCpf(cpf));
             }
             catch (Exception ex)
             {
@@ -43,11 +43,11 @@ namespace UserAPI.Controllers
         }
 
         [HttpPost("register")]
-        public IActionResult Register(User user)
+        public async Task<IActionResult> Register(User user)
         {
             try
             {
-                return Ok(_userRepository.Create(user));
+                return Ok(await _userRepository.Create(user));
             }
             catch (Exception ex)
             {
@@ -55,12 +55,12 @@ namespace UserAPI.Controllers
             }
         }
 
-        [HttpPut("alterar")]
-        public IActionResult Update(User user)
+        [HttpPut("update")]
+        public async Task<IActionResult> Update(User user)
         {
             try
             {
-                return Ok(_userRepository.Update(user));
+                return Ok(await _userRepository.Update(user));
             }
             catch (Exception ex)
             {
@@ -69,11 +69,11 @@ namespace UserAPI.Controllers
         }
 
         [HttpPut("inactivate/{id}")]
-        public IActionResult Inactivate(int id)
+        public async Task<IActionResult> Inactivate(int id)
         {
             try
             {
-                return Ok(_userRepository.Disable(id));
+                return Ok(await _userRepository.Disable(id));
             }
             catch (Exception ex)
             {
@@ -82,11 +82,11 @@ namespace UserAPI.Controllers
         }
 
         [HttpPut("reactivate/{id}")]
-        public IActionResult Reactivate(int id)
+        public async Task<IActionResult> Reactivate(int id)
         {
             try
             {
-                return Ok(_userRepository.Enable(id));
+                return Ok(await _userRepository.Enable(id));
             }
             catch (Exception ex)
             {
@@ -95,13 +95,13 @@ namespace UserAPI.Controllers
         }
 
         [HttpPost("login")]
-        public dynamic Login(Credentials credentials)
+        public async Task<dynamic> Login(Credentials credentials)
         {
             try
             {
-                var user = _userRepository.Login(credentials);
+                var user = await _userRepository.Login(credentials);
 
-                if(user == null)
+                if (user == null)
                     return NotFound(new { message = "Usuário ou senha inválidos" });
 
                 var token = TokenRepository.GenerateToken(user);

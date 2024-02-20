@@ -1,4 +1,4 @@
-@UserAPI_HostAddress = http://localhost:5148
+@UserAPI_HostAddress = http://localhost:5010
 @UserAPI_DockerPlaygroundAddress = http://ip172-18-0-20-cn4jkpsnupig009u9jh0-5009.direct.labs.play-with-docker.com
 
 GET {{UserAPI_HostAddress}}/api/User
@@ -6,10 +6,6 @@ Accept: application/json
 
 ###
 
-GET {{UserAPI_HostAddress}}/api/User/1
-Accept: application/json
-
-###
 GET {{UserAPI_HostAddress}}/api/User/find/12345678912
 Accept: application/json
 
@@ -30,18 +26,40 @@ Content-Type: application/json
 }
 
 ###
-POST {{UserAPI_DockerPlaygroundAddress}}/api/Usuario/cadastro
+
+PUT {{UserAPI_HostAddress}}/api/User/update
 Accept: application/json
 Content-Type: application/json
 
 {
   "cpf": "12345678912",
-  "nomeCompleto": "Clébio Machado",
+  "nomeCompleto": "Clébio Silva Machado Souza",
   "email": "string@email.com",
   "senha": "12345678",
   "telefone": "11996853256",
   "isActive": true,
   "tipoUsuarioId": 1
+}
+
+###
+
+PUT {{UserAPI_HostAddress}}/api/User/inactivate/1
+Accept: application/json
+
+###
+
+PUT {{UserAPI_HostAddress}}/api/User/reactivate/1
+Accept: application/json
+
+###
+
+POST {{UserAPI_HostAddress}}/api/User/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "string@email.com",
+  "senha": "12345678"
 }
 
 ###
@@ -52,12 +70,12 @@ Content-Type: application/json
 
 {
   "cep": "05792080",
-  "logradouro": "Rua Mitim",
-  "numero": 134,
-  "bairro": "Jardim Leônidas Moreira",
+  "logradouro": "Avenida Roger 3",
+  "numero": 13,
+  "bairro": "Campo Limpo",
   "cidade": "São Paulo",
   "uf": "SP",
-  "complemento": "Bl. 02 Apto 203"
+  "complemento": "Bl. 5 Apto 543"
  }
 ###
 
@@ -66,12 +84,12 @@ Accept: application/json
 
 ###
 
-GET {{UserAPI_HostAddress}}/api/Address/2
+GET {{UserAPI_HostAddress}}/api/Address/1
 Accept: application/json
 
 ###
 
-DELETE {{UserAPI_HostAddress}}/api/Address/2
+DELETE {{UserAPI_HostAddress}}/api/Address/1
 Accept: application/json
 
 ###

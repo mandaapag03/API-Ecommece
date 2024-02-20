@@ -15,16 +15,16 @@ namespace ProductAPI.Repository
             _context = new DatabaseContext();
         }
 
-        public Category Create(Category category)
+        public async Task<Category> Create(Category category)
         {
             try
             {
-                if (_context.Categories.AsNoTracking().Where(c => c.Nome == category.Nome).Any())
+                if (await _context.Categories.AsNoTracking().Where(c => c.Nome == category.Nome).AnyAsync())
                 {
                     throw new Exception("Essa categoria já está registrada");
                 }
 
-                _context.Categories.Add(category);
+                await _context.Categories.AddAsync(category);
                 _context.SaveChanges();
                 
             }
@@ -33,23 +33,23 @@ namespace ProductAPI.Repository
                 throw new Exception(ex.Message);
             }
 
-            int CategoryId = _context.Categories.Max(c => c.Id);
-            return GetById(CategoryId);
+            int CategoryId = await _context.Categories.MaxAsync(c => c.Id);
+            return await GetById(CategoryId);
         }
 
-        public bool Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            var category = GetById(id);
+            var category = await GetById(id);
 
-            var productsWithCategories = _context.Products
+            var productsWithCategories = await _context.Products
                 .AsNoTracking()
                 .Where(c => c.CategoriaId == category.Id)
-                .ToList();
+                .ToListAsync();
 
-            var subCategory = _context.Categories
+            var subCategory = await _context.Categories
                 .AsNoTracking()
                 .Where(c => c.IdSubCategoria == category.Id)
-                .ToList();
+                .ToListAsync();
 
             if (productsWithCategories.Count != 0 || subCategory.Count != 0)
                 throw new Exception("Há produtos atrelados a essa categoria ou subcategorias dependentes, ela não pode ser excluída");
@@ -60,32 +60,32 @@ namespace ProductAPI.Repository
             return true;
         }
 
-        public List<Category>? GetAll()
+        public async Task<List<Category>?> GetAll()
         {
-            return _context.Categories
+            return await _context.Categories
                 .AsNoTracking()
                 .Include(c => c.SubCategoria)
                 .OrderBy(c => c.Id)
-                .ToList();
+                .ToListAsync();
         }
 
-        public Category GetById(int id)
+        public async Task<Category> GetById(int id)
         {
-            var category = _context.Categories
+            var category = await _context.Categories
                 .Include(c => c.SubCategoria)
-                .FirstOrDefault(c => c.Id == id);
+                .FirstOrDefaultAsync(c => c.Id == id);
 
             return NullOrEmptyVariable<Category>.ThrowIfNull(category, "Categoria não existe");
         }
 
-        public List<Category>? GetSubCategoriesById(int id)
+        public async Task<List<Category>?> GetSubCategoriesById(int id)
         {
-            var subCategory = _context.Categories.FirstOrDefault(c => c.Id == id);
+            var subCategory = await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
             NullOrEmptyVariable<Category>.ThrowIfNull(subCategory, "Categoria não existe");
             
-            return _context.Categories
+            return await _context.Categories
                 .Where(c => c.IdSubCategoria == id)
-                .ToList();
+                .ToListAsync();
         }
     }
 }
