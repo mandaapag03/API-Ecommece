@@ -1,0 +1,42 @@
+@OrderAPI_HostAddress = http://localhost:5053
+
+// Cart
+
+GET {{OrderAPI_HostAddress}}/api/Cart/1
+Accept: application/json
+
+###
+
+POST {{OrderAPI_HostAddress}}/api/Cart/item/add
+Accept: application/json
+Content-Type: application/json
+
+{
+  "usuarioId": 1,
+  "produtoId": 1
+}
+
+###
+
+// Order
+
+POST {{OrderAPI_HostAddress}}/api/Order/create
+Accept: application/json
+Content-Type: application/json
+
+{
+  "usuarioId": 1,
+  "formaPagamentoId": 1,
+  "formaEnvioId": 1,
+  "enderecoId": 2,
+  "qtd_parecelas": 1,
+  "total": 154.99,
+  "itensPedido": [
+    {
+      "produtoId": 1,
+      "quantidade": 1
+    }
+  ]
+}
+
+###
