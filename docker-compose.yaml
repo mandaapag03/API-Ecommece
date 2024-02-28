@@ -1,14 +1,14 @@
 services:
-  # UserAPI:
-  #   image: omg-user-api
-  #   build: ./UserAPI
-  #   container_name: user-api
-  #   volumes:
-  #     - ./UserAPI/system/OhMyDogAPI:/var/lib/omdapi
-  #   ports:
-  #     - "5010:8080"
-  #   networks:
-  #     - omd-network
+  UserAPI:
+    image: omg-user-api
+    build: ./UserAPI
+    container_name: user-api
+    volumes:
+      - ./UserAPI/system/OhMyDogAPI:/var/lib/omdapi
+    ports:
+      - "5010:8080"
+    networks:
+      - omd-network
 
   PromotionAPI:
     build: ./PromotionAPI
