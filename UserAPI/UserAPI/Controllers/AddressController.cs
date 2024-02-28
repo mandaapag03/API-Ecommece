@@ -16,7 +16,7 @@ namespace UserAPI.Controllers
         }
 
         [HttpGet("list/{userId}")]
-        public async Task<IActionResult> List(int userId)
+        public async Task<ActionResult<Address>> List(int userId)
         {
             try
             {
@@ -29,7 +29,7 @@ namespace UserAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Find(int id)
+        public async Task<ActionResult<Address>> Find(int id)
         {
             try
             {
@@ -42,7 +42,7 @@ namespace UserAPI.Controllers
         }
 
         [HttpPost("register/{userId}")]
-        public async Task<IActionResult> Insert([FromBody] Address address, [FromRoute] int userId)
+        public async Task<ActionResult<Address>> Insert([FromBody] Address address, [FromRoute] int userId)
         {
             try
             {
@@ -56,8 +56,22 @@ namespace UserAPI.Controllers
             }
         }
 
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Address>> Update([FromBody] Address address, [FromRoute] int id)
+        {
+            try
+            {
+                address.Id = id;
+                return Ok(await _addressRepository.Update(address));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<ActionResult<Address>> Delete(int id)
         {
             try
             {

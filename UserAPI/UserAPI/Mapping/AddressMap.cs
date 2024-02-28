@@ -34,6 +34,9 @@ namespace UserAPI.Mapping
 
             builder.Property(e => e.Complemento)
                 .HasColumnName("complemento");
+            
+            builder.Property(e => e.Descricao)
+                .HasColumnName("descricao");
 
             builder.Property(e => e.UsuarioId)
                 .HasColumnName("id_usuario");

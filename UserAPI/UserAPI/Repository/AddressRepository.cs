@@ -74,6 +74,7 @@ namespace UserAPI.Repository
                 oldAddress.Complemento = address.Complemento;
                 oldAddress.Uf = address.Uf;
                 oldAddress.Cidade = address.Cidade;
+                oldAddress.Descricao = address.Descricao;
 
                 _context.Addresses.Update(oldAddress);
                 _context.SaveChanges();

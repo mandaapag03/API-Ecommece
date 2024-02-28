@@ -18,6 +18,7 @@
         public string Uf { get; set; }
 
         public string? Complemento { get; set; }
+        public string? Descricao { get; set; }
 
         [Obsolete]
         public int UsuarioId { get; set; }

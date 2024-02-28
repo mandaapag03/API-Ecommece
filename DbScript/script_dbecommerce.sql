@@ -34,6 +34,7 @@ create table if not exists  dbpet.endereco(
 	cep varchar(10) not null,
 	cidade varchar(30) not null,
 	complemento varchar(30),
+	descricao varchar(30),
 	constraint endereco_id_usuario_fk foreign key (id_usuario) REFERENCES dbpet.usuario(id)
 );
 

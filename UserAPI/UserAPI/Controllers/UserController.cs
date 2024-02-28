@@ -16,7 +16,7 @@ namespace UserAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ListUsers()
+        public async Task<ActionResult<User>> ListUsers()
         {
             try
             {
@@ -30,7 +30,7 @@ namespace UserAPI.Controllers
         }
 
         [HttpGet("find/{cpf}")]
-        public async Task<IActionResult> FindUser(string cpf)
+        public async Task<ActionResult<User>> FindUser(string cpf)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace UserAPI.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(User user)
+        public async Task<ActionResult<User>> Register(User user)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace UserAPI.Controllers
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> Update(User user)
+        public async Task<ActionResult<User>> Update(User user)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace UserAPI.Controllers
         }
 
         [HttpPut("inactivate/{id}")]
-        public async Task<IActionResult> Inactivate(int id)
+        public async Task<ActionResult<User>> Inactivate(int id)
         {
             try
             {
@@ -82,7 +82,7 @@ namespace UserAPI.Controllers
         }
 
         [HttpPut("reactivate/{id}")]
-        public async Task<IActionResult> Reactivate(int id)
+        public async Task<ActionResult<User>> Reactivate(int id)
         {
             try
             {
