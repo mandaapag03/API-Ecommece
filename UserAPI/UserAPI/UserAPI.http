@@ -17,7 +17,7 @@ Content-Type: application/json
 
 {
   "cpf": "12345678912",
-  "nomeCompleto": "Clébio Machado",
+  "nomeCompleto": "Clï¿½bio Machado",
   "email": "string@email.com",
   "senha": "12345678",
   "telefone": "11996853256",
@@ -33,7 +33,7 @@ Content-Type: application/json
 
 {
   "cpf": "12345678912",
-  "nomeCompleto": "Clébio Silva Machado Souza",
+  "nomeCompleto": "ClÃ©bio Silva Machado Souza",
   "email": "string@email.com",
   "senha": "12345678",
   "telefone": "11996853256",
@@ -73,7 +73,7 @@ Content-Type: application/json
   "logradouro": "Avenida Roger 3",
   "numero": 13,
   "bairro": "Campo Limpo",
-  "cidade": "São Paulo",
+  "cidade": "SÃ£o Paulo",
   "uf": "SP",
   "complemento": "Bl. 5 Apto 543"
  }

@@ -12,14 +12,14 @@ namespace OrderAPI.Communication
         public PaymentCommunication(IHttpClientFactory _httpClientFactory)
         {
             _httpClient = _httpClientFactory.CreateClient();
-            _httpClient.BaseAddress = new Uri("http://localhost:5228/api/Payment/");
+            _httpClient.BaseAddress = new Uri("http://payment-api:8080/api/Payment/");
+            // _httpClient.BaseAddress = new Uri("http://localhost:5228/api/Payment/");
         }
 
         public async Task<Payment> CreatePayment(int userId, int paymentMethod, int qntInstallments, double total, int orderId)
         {
             try
             {
-
                 var requestBody = JsonConvert.SerializeObject(new
                 {
                     usuarioId = userId,
