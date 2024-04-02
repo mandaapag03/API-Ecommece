@@ -10,10 +10,10 @@ namespace ProductAPI.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        ProductRepository _productRepository;
-        public ProductController() 
+        private readonly ProductRepository _productRepository;
+        public ProductController(IHttpClientFactory httpClientFactory) 
         { 
-            _productRepository = new ProductRepository();
+            _productRepository = new ProductRepository(httpClientFactory);
         }
 
         [HttpGet]

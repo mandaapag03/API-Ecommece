@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProductAPI.Communication;
 using ProductAPI.Data;
 using ProductAPI.Model;
 using ProductAPI.Model.Interfaces;
@@ -9,9 +10,11 @@ namespace ProductAPI.Repository
     public class ProductRepository : IProductRepository
     {
         private readonly DatabaseContext _context;
-        public ProductRepository() 
+        private readonly InventoryCommunication _inventoryCommunication;
+        public ProductRepository(IHttpClientFactory httpClientFactory) 
         {
             _context = new DatabaseContext();
+            _inventoryCommunication = new InventoryCommunication(httpClientFactory);
         }
         public async Task<List<Product>> GetAll()
         {
@@ -34,14 +37,27 @@ namespace ProductAPI.Repository
 
         public async Task<Product> Create(Product produto)
         {
-            await _context.Products.AddAsync(produto);
-            _context.SaveChanges();
+            try
+            {
+                await _context.Products.AddAsync(produto);
+                _context.SaveChanges();
 
-            var result = await _context.Products
-                .Include(p => p.Categoria)
-                .FirstOrDefaultAsync(p => p.Nome == produto.Nome);
+                var result = await _context.Products
+                    .Include(p => p.Categoria)
+                    .FirstOrDefaultAsync(p => p.Nome == produto.Nome);
 
-            return NullOrEmptyVariable<Product>.ThrowIfNull(result, "Não foi possível cadastrar seu produto, tente mais tarde.");
+                NullOrEmptyVariable<Product>.ThrowIfNull(result, "Não foi possível cadastrar seu produto, tente mais tarde.");
+
+                //var inventory = await _inventoryCommunication.AddProductToInventory(result.Id);
+                //NullOrEmptyVariable<Inventory>.ThrowIfNull(inventory, "Não foi possível cadastrar seu produto no inventário");
+
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
         public async Task<Product> Update(Product produto)
         {

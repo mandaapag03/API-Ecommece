@@ -174,8 +174,16 @@ create table if not exists  dbpet.avaliacao(
 
 -- Estoque
 create table if not exists  dbpet.estoque(
-	id serial primary key,
 	id_produto int not null, 
 	quantidade int not null,
-	constraint estoque_id_produto_fk foreign key (id_produto) REFERENCES dbpet.produto(id)
+	constraint estoque_id_produto_fk foreign key (id_produto) REFERENCES dbpet.produto(id),
+	primary key(id_produto)
+);
+
+-- Feedback (Sistema)
+create table if not exists  dbpet.feedback(
+	id serial primary key,  
+	nota smallint not null,
+	comentario varchar(300),
+	constraint feedback_nota_ck check(nota > 0 and nota <= 5)
 );

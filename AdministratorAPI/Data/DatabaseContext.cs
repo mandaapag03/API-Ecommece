@@ -1,12 +1,12 @@
-﻿using InventoryAPI.Mapping;
-using InventoryAPI.Model;
+﻿using AdministratorAPI.Mapping;
+using AdministratorAPI.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace InventoryAPI.Data
+namespace AdministratorAPI.Data
 {
     public class DatabaseContext : DbContext
     {
-        public DbSet<Inventory> Inventories { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
@@ -17,7 +17,7 @@ namespace InventoryAPI.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfiguration(new InventoryMap());
+            builder.ApplyConfiguration(new FeedbackMap());
         }
     }
 }
