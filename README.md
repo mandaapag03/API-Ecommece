@@ -41,6 +41,9 @@ http://localhost:5053/swagger/index.html
 Payment API:
 http://localhost:5228/swagger/index.html
 
+Administrator API:
+http://localhost:5143/swagger/index.html
+
 
 4. Acessar banco de dados
    
