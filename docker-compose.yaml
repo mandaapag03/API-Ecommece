@@ -65,16 +65,16 @@ services:
     networks:
       - omd-network
 
-  # AdministratorAPI:
-  #   build: ./AdministratorAPI
-  #   image: omg-administrator-api
-  #   container_name: administrator-api
-  #   volumes:
-  #     - ./AdministratorAPI/system/OhMyDogAPI:/var/lib/omdapi
-  #   ports:
-  #     - "5143:8080"
-  #   networks:
-  #     - omd-network
+  AdministratorAPI:
+    build: ./AdministratorAPI
+    image: omg-administrator-api
+    container_name: administrator-api
+    volumes:
+      - ./AdministratorAPI/system/OhMyDogAPI:/var/lib/omdapi
+    ports:
+      - "5143:8080"
+    networks:
+      - omd-network
 
   db:
     image: postgres:latest

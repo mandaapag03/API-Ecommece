@@ -13,11 +13,8 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5143",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      "launchUrl": "swagger/index.html",
+      "applicationUrl": "http://localhost:5143"
     },
     "IIS Express": {
       "commandName": "IISExpress",
