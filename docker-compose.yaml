@@ -21,16 +21,16 @@ services:
     networks:
       - omd-network
 
-  # ProductAPI:
-  #   build: ./ProductAPI
-  #   image: omg-product-api
-  #   container_name: product-api
-  #   volumes:
-  #     - ./ProductAPI/system/OhMyDogAPI:/var/lib/omdapi
-  #   ports:
-  #     - "5051:8080"
-  #   networks:
-  #     - omd-network
+  ProductAPI:
+    build: ./ProductAPI
+    image: omg-product-api
+    container_name: product-api
+    volumes:
+      - ./ProductAPI/system/OhMyDogAPI:/var/lib/omdapi
+    ports:
+      - "5051:8080"
+    networks:
+      - omd-network
 
   PaymentAPI:
     build: ./PaymentAPI
