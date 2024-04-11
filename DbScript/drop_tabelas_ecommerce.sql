@@ -17,6 +17,7 @@ select * from dbpet.favoritos;
 select * from dbpet.avaliacao;
 select * from dbpet.estoque;
 select * from dbpet.status_pagamento;
+select * from dbpet.feedback;
 
 -- drop table
 drop table dbpet.feedback;

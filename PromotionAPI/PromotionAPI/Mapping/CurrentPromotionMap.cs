@@ -4,9 +4,9 @@ using PromotionAPI.Model;
 
 namespace PromotionAPI.Mapping
 {
-    public class CurrentlyPromotionMap : IEntityTypeConfiguration<CurrentlyPromotion>
+    public class CurrentPromotionMap : IEntityTypeConfiguration<CurrentPromotion>
     {
-        public void Configure(EntityTypeBuilder<CurrentlyPromotion> builder)
+        public void Configure(EntityTypeBuilder<CurrentPromotion> builder)
         {
             builder.ToTable("promocoes_atuais", "dbpet");
 
@@ -18,8 +18,6 @@ namespace PromotionAPI.Mapping
 
             builder.Property(x => x.ProdutoId)
                 .HasColumnName("id_produto");
-
-            builder.HasOne(x => x.Promocao);
         }
     }
 }
