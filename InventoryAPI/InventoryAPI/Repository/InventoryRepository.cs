@@ -32,28 +32,28 @@ namespace InventoryAPI.Repository
             }
         }
 
-        public async Task<Inventory> Delete(int productId)
-        {
-            try
-            {
-                var inventory = await Get(productId);
+        // public async Task<Inventory> Delete(int productId)
+        // {
+        //     try
+        //     {
+        //         var inventory = await Get(productId);
 
-                if(inventory.Quantity != 0) { throw new Exception("Esse produto ainda tem quantidades no estoque."); }
+        //         if (inventory.Quantity != 0) { throw new Exception("Esse produto ainda tem quantidades no estoque."); }
 
-                _context.Inventories.Remove(inventory);
-                _context.SaveChanges();
+        //         _context.Inventories.Remove(inventory);
+        //         _context.SaveChanges();
 
-                return inventory;
-            }
-            catch
-            {
-                throw;
-            }
-        }
+        //         return inventory;
+        //     }
+        //     catch
+        //     {
+        //         throw;
+        //     }
+        // }
 
         public async Task<Inventory> Get(int productId)
         {
-            return NullOrEmptyVariable<Inventory>.ThrowIfNull( 
+            return NullOrEmptyVariable<Inventory>.ThrowIfNull(
                 await _context.Inventories.FirstOrDefaultAsync(x => x.ProductId == productId), "Produto não encontrado no estoque.");
         }
 
@@ -66,16 +66,14 @@ namespace InventoryAPI.Repository
         {
             try
             {
-                await Get(inventory.ProductId);
-
-                //_context.Entry<Inventory>(inventory).State = EntityState.Detached;
+                _context.Entry<Inventory>(inventory).State = EntityState.Detached;
                 _context.Inventories.Update(inventory);
                 _context.SaveChanges();
 
-                if(inventory.Quantity == 0)
+                if (inventory.Quantity == 0)
                 {
-                   //var product = await _productCommunication.DisableProduct(inventory.ProductId);
-                   // NullOrEmptyVariable<Product>.ThrowIfNull(product, "Erro ao desabilitar esse produto");
+                    var product = await _productCommunication.DisableProduct(inventory.ProductId);
+                    NullOrEmptyVariable<Product>.ThrowIfNull(product, "Erro ao desabilitar esse produto");
                 }
                 return inventory;
             }

@@ -67,18 +67,18 @@ namespace InventoryAPI.Controllers
             }
         }
 
-        [HttpDelete("delete")]
-        public async Task<ActionResult<Inventory>> Delete(int productId)
-        {
-            try
-            {
-                return await _inventoryRepository.Delete(productId);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        // [HttpDelete("delete")]
+        // public async Task<ActionResult<Inventory>> Delete(int productId)
+        // {
+        //     try
+        //     {
+        //         return await _inventoryRepository.Delete(productId);
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         return BadRequest(ex.Message);
+        //     }
+        // }
 
 
     }
