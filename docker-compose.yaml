@@ -86,6 +86,9 @@ services:
     container_name: db-ecommerce-postgres
     volumes:
       - /home/amanda/PostgreSQL:/var/lib/postgresql/data
+      - ./docker-entrypoint-initdb.d/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./docker-entrypoint-initdb.d/script_dbecommerce.sql:/docker-entrypoint-initdb.d/script_dbecommerce.sql
+      - ./docker-entrypoint-initdb.d/inserts.sql:/docker-entrypoint-initdb.d/inserts.sql
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=Postgres2023!
