@@ -1,0 +1,13 @@
+@EmailAPI_HostAddress = http://localhost:5079
+
+POST {{EmailAPI_HostAddress}}/api/Email/SendEmail
+Accept: application/json
+Content-Type: application/json
+
+{
+  "fromEmail": "amandapagani@bol.com.br",
+  "toEmails": "paganiamanda791@gmail.com",
+  "subject": "Teste",
+  "body": "Teste"
+}
+###
