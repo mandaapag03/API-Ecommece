@@ -398,4 +398,4 @@ FodyWeavers.xsd
 *.sln.iml
 
 # add .env file to .gitignore
-echo ".env" >> .gitignore
+echo "EmailAPI/.env" >> .gitignore
