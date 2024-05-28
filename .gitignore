@@ -397,5 +397,7 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
+EmailAPI/.env
+
 # add .env file to .gitignore
 echo "EmailAPI/.env" >> .gitignore
