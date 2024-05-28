@@ -1,6 +1,6 @@
 services:
   UserAPI:
-    image: omg-user-api
+    image: omd-user-api
     build: ./UserAPI
     container_name: user-api
     volumes:
@@ -12,7 +12,7 @@ services:
 
   PromotionAPI:
     build: ./PromotionAPI
-    image: omg-promotion-api
+    image: omd-promotion-api
     container_name: promotion-api
     volumes:
       - ./PromotionAPI/system/OhMyDogAPI:/var/lib/omdapi
@@ -23,7 +23,7 @@ services:
 
   ProductAPI:
     build: ./ProductAPI
-    image: omg-product-api
+    image: omd-product-api
     container_name: product-api
     volumes:
       - ./ProductAPI/system/OhMyDogAPI:/var/lib/omdapi
@@ -34,7 +34,7 @@ services:
 
   PaymentAPI:
     build: ./PaymentAPI
-    image: omg-payment-api
+    image: omd-payment-api
     container_name: payment-api
     volumes:
       - ./PaymentAPI/system/OhMyDogAPI:/var/lib/omdapi
@@ -45,7 +45,7 @@ services:
 
   OrderAPI:
     build: ./OrderAPI
-    image: omg-order-api
+    image: omd-order-api
     container_name: order-api
     volumes:
       - ./OrderAPI/system/OhMyDogAPI:/var/lib/omdapi
@@ -56,7 +56,7 @@ services:
 
   InventoryAPI:
     build: ./InventoryAPI
-    image: omg-inventory-api
+    image: omd-inventory-api
     container_name: inventory-api
     volumes:
       - ./InventoryAPI/system/OhMyDogAPI:/var/lib/omdapi
@@ -67,7 +67,7 @@ services:
 
   AdministratorAPI:
     build: ./AdministratorAPI
-    image: omg-administrator-api
+    image: omd-administrator-api
     container_name: administrator-api
     volumes:
       - ./AdministratorAPI/system/OhMyDogAPI:/var/lib/omdapi
@@ -76,9 +76,25 @@ services:
     networks:
       - omd-network
 
+  EmailAPI:
+    env_file:
+      - ./EmailAPI/.env
+    environment:
+      - ADM__EMAIL=${ADM__EMAIL}
+      - EMAIL__PASSWORD=${EMAIL__PASSWORD}
+    build: ./EmailAPI
+    image: omd-email-api
+    container_name: email-api
+    volumes:
+      - ./EmailAPI/system/OhMyDogAPI:/var/lib/omdapi
+    ports:
+      - "5079:8080"
+    networks:
+      - omd-network
+
   db:
-    image: postgres:latest
-    build: postgres:latest
+    image: postgres:16.0
+    build: postgres:16.0
     ports:
       - "5432:5432"
     networks:
