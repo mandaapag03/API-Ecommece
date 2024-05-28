@@ -6,7 +6,7 @@ Content-Type: application/json
 
 {
   "toEmails": "amanda.pagani@aluno.faculdadeimpacta.com.br",
-  "subject": "Teste Oh My Dog",
-  "body": "<h1>Teste Oh My Dog<h1>"
+  "subject": "Teste Docker Oh My Dog",
+  "body": "<h1>Teste Oh My Dog docker<h1><hr/>"
 }
 ###

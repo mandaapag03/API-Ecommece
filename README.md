@@ -19,7 +19,7 @@ https://www.instagram.com/p/C2tlM4wOPa2/?utm_source=ig_web_copy_link&igsh=MzRlOD
 
 3. Entre com o cmd na pasta do projeto e digite:
    
-`docker-compose up`
+`make up` ou apenas `make`
 
 5. Acesse as apis nas URLs:
 
@@ -44,15 +44,13 @@ http://localhost:5228/swagger/index.html
 Administrator API:
 http://localhost:5143/swagger/index.html
 
+Email API:
+http://localhost:5079/swagger/index.html
+
 
 4. Acessar banco de dados
    
     a. Acesse o PgAdmin no link: http://localhost:15432/
-   
-    `Usuario: amanda.pagani@aluno.faculdadeimpacta.com.br`
-   
-    `Senha: PgAdmin2023!`
-
     b. Botão direito na aba Servers > Register > Server...
     c. Na aba General, preencha o Name. Na aba Connection preencha Host, Port, Maintenance database, Username, Password. Clique em save
         
@@ -67,4 +65,4 @@ http://localhost:5143/swagger/index.html
         - script_dbecommerce.sql
         - inserts.sql
 6. Caso queira parar os containeres:
-docker-compose stop ou ctrl+C
+`make down`

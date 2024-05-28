@@ -6,9 +6,6 @@ COPY . ./
 
 WORKDIR /App
 
-ENV ADM__EMAIL=${ADM__EMAIL}
-ENV EMAIL__PASSWORD=${EMAIL__PASSWORD}
-
 RUN dotnet restore
 RUN dotnet publish -c Release -o out
 

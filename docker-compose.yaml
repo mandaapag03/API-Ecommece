@@ -77,8 +77,6 @@ services:
       - omd-network
 
   EmailAPI:
-    env_file:
-      - ./EmailAPI/.env
     environment:
       - ADM__EMAIL=${ADM__EMAIL}
       - EMAIL__PASSWORD=${EMAIL__PASSWORD}
@@ -106,8 +104,8 @@ services:
       - ./docker-entrypoint-initdb.d/script_dbecommerce.sql:/docker-entrypoint-initdb.d/script_dbecommerce.sql
       - ./docker-entrypoint-initdb.d/inserts.sql:/docker-entrypoint-initdb.d/inserts.sql
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=Postgres2023!
+      - POSTGRES_USER=${POSTGRES__USER}
+      - POSTGRES_PASSWORD=${POSTGRES__PASSWORD}
 
   pgAdmin:
     image: dpage/pgadmin4
@@ -120,8 +118,8 @@ services:
     volumes:
       - /home/amanda/pgadmin:/var/lib/pgadmin/data
     environment:
-      PGADMIN_DEFAULT_EMAIL: amanda.pagani@aluno.faculdadeimpacta.com.br
-      PGADMIN_DEFAULT_PASSWORD: PgAdmin2023!
+      PGADMIN_DEFAULT_EMAIL: ${ADM__EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${EMAIL__PASSWORD}
 
 networks:
   omd-network:
