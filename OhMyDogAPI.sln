@@ -19,7 +19,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderAPI", "OrderAPI\OrderA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdministratorAPI", "AdministratorAPI\AdministratorAPI.csproj", "{A828ED1D-D567-4CC0-B750-7160831B6E05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailAPI", "EmailAPI\EmailAPI.csproj", "{91398EA5-5871-496F-A8EF-7732853862FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailAPI", "EmailAPI\EmailAPI.csproj", "{91398EA5-5871-496F-A8EF-7732853862FC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A41B9ADB-2C23-4E6A-BCCC-F21104FB9399} = {A41B9ADB-2C23-4E6A-BCCC-F21104FB9399}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

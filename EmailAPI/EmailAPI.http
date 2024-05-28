@@ -5,9 +5,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "fromEmail": "amandapagani@bol.com.br",
-  "toEmails": "paganiamanda791@gmail.com",
-  "subject": "Teste",
-  "body": "Teste"
+  "toEmails": "amanda.pagani@aluno.faculdadeimpacta.com.br",
+  "subject": "Teste Oh My Dog",
+  "body": "<h1>Teste Oh My Dog<h1>"
 }
 ###

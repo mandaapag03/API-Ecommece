@@ -1,83 +1,53 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mail;
 using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
+using EmailAPI.Model;
+using VerifyNullablesObjects;
 
 namespace EmailAPI.Controllers
 {
-
-    public class EmailModel
+  [Route("api/[controller]")]
+  [ApiController]
+  public class EmailController : ControllerBase
+  {
+    [HttpPost("SendEmail")]
+    public ActionResult SendEmail(Email emailData)
     {
-        public string FromEmail { get; set; } = "amandapagani@bol.com.br";
-        public string ToEmails { get; set; } = "paganiamanda791@gmail.com";
-        public string Subject { get; set; } = "Teste";
-        public string Body { get; set; } = "Teste";
-    }
+      var fromEmail = Environment.GetEnvironmentVariable("ADM__EMAIL");
+      var password = Environment.GetEnvironmentVariable("EMAIL__PASSWORD");
 
-    [Route("api/[controller]")]
-    [ApiController]
-    public class EmailController : ControllerBase
-    {
-        [HttpPost("SendEmail")]
-        public ActionResult SendEmail(EmailModel emailData)
-        {
-            var message = new MailMessage()
-            {
-                From = new MailAddress(emailData.FromEmail),
-                Subject = emailData.Subject,
-                IsBodyHtml = true,
-                Body = $"""
+      NullOrEmptyVariable<string>.ThrowIfNull(fromEmail, "Admin Email not found, verify your .env file definine it.");
+      NullOrEmptyVariable<string>.ThrowIfNull(password, "Password of admin email not found, verify your .env file definine it.");
+
+      var message = new MailMessage()
+      {
+        From = new MailAddress(fromEmail),
+        Subject = emailData.Subject,
+        IsBodyHtml = true,
+        Body = $"""
                 <html>
-                    <body>
-                        <h3>{emailData.Body}</h3>
-                    </body>
+                    <body>{emailData.Body}</body>
                 </html>
                 """
-            };
-            foreach (var toEmail in emailData.ToEmails.Split(";"))
-            {
-                message.To.Add(new MailAddress(toEmail));
-            }
+      };
+      foreach (var toEmail in emailData.ToEmails.Split(";"))
+      {
+        message.To.Add(new MailAddress(toEmail));
+      }
 
-            var smtp = new SmtpClient("smtp.gmail.com")
-            {
-                Port = 587,
-                Credentials = new NetworkCredential(emailData.FromEmail, "mg7112003"),
-                EnableSsl = true,
-            };
+      var smtp = new SmtpClient("smtp.medicinadamulher.com.br")
+      {
+        Port = 587,
+        Credentials = new NetworkCredential(fromEmail, password),
+        EnableSsl = true,
+      };
 
-            smtp.Send(message);
+      Utils.DisableCertificateValidation();
+      smtp.Send(message);
 
-            return Ok("Email Sent!");
-        }
+      return Ok("Email Sent!");
     }
-    // [Route("api/[controller]")]
-    // [ApiController]
-    // public class EmailController : ControllerBase
-    // {
-    //     [HttpPost]
-    //     public IActionResult EnviarEmail([FromBody] Email email)
-    //     {
-    //         string remetente = "contato.amandapagani791@gmail.com"; // Insira aqui o e-mail do remetente
-    //         string senha = "MainSennaRell2022@@"; // Insira aqui a senha do e-mail do remetente
-
-    //         using (var message = new MailMessage(remetente, email.Destinatario))
-    //         {
-    //             message.Subject = email.Assunto;
-    //             message.Body = email.Corpo;
-    //             message.IsBodyHtml = true;
-
-    //             using (var client = new SmtpClient("smtp.gmail.com")) // Configure o SMTP conforme o provedor do e-mail
-    //             {
-    //                 client.Port = 587;
-    //                 client.Credentials = new NetworkCredential(remetente, senha, "smtp.gmail.com");
-    //                 client.EnableSsl = true;
-    //                 client.UseDefaultCredentials = false;
-
-    //                 client.Send(message);
-    //             }
-
-    //             return Ok("E-mail enviado com sucesso!");
-    //         }
-    //     }
-    // }
+  }
 }
