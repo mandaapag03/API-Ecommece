@@ -397,4 +397,5 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-.env
+# add .env file to .gitignore
+echo ".env" >> .gitignore
