@@ -1,0 +1,8 @@
+Onde colocar envio de email:
+
+CLIENTE
+-> Cadastro do usuário para confirmação de email
+-> Criação do pedido
+-> A cada mudança de status
+-> Lançamento de promoção
+-> Lembretes de produtos do carrinho
