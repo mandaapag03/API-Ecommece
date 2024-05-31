@@ -104,12 +104,12 @@ services:
       - ./docker-entrypoint-initdb.d/script_dbecommerce.sql:/docker-entrypoint-initdb.d/script_dbecommerce.sql
       - ./docker-entrypoint-initdb.d/inserts.sql:/docker-entrypoint-initdb.d/inserts.sql
     environment:
-      - POSTGRES_USER=${POSTGRES__USER}
-      - POSTGRES_PASSWORD=${POSTGRES__PASSWORD}
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Postgres2023!
 
   pgAdmin:
-    image: dpage/pgadmin4
-    build: dpage/pgadmin4
+    image: dpage/pgadmin4:latest
+    build: dpage/pgadmin4:latest
     ports:
       - "15432:80"
     networks:
