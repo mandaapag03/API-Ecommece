@@ -19,7 +19,7 @@ https://www.instagram.com/p/C2tlM4wOPa2/?utm_source=ig_web_copy_link&igsh=MzRlOD
 
 3. Entre com o cmd na pasta do projeto e digite:
    
-`make up` ou apenas `make`
+```docker-compose --env-file */.env up -d```
 
 5. Acesse as apis nas URLs:
 
@@ -65,4 +65,4 @@ http://localhost:5079/swagger/index.html
         - script_dbecommerce.sql
         - inserts.sql
 6. Caso queira parar os containeres:
-`make down`
+```docker-compose --env-file */.env down```
