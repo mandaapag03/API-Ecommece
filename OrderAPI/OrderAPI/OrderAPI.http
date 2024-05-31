@@ -28,7 +28,7 @@ Content-Type: application/json
   "usuarioId": 1,
   "formaPagamentoId": 1,
   "formaEnvioId": 1,
-  "enderecoId": 2,
+  "enderecoId": 1,
   "qtd_parecelas": 1,
   "total": 154.99,
   "itensPedido": [
