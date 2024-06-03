@@ -2,7 +2,7 @@
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
 
-namespace EmailAPI.Controllers
+namespace EmailAPI.Services
 {
     public static class Utils
     {

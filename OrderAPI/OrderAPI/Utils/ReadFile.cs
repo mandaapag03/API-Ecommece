@@ -1,14 +1,14 @@
+using OrderAPI.Model;
+
 namespace OrderAPI.Utils;
 
 public static class ReadFile
 {
-    public static string ReadTemplateOrderCreated()
+    public static string ReadTemplateOrderCreated(User user)
     {
         return @"<!DOCTYPE html>
-<html lang=""pt-br"">
+<html lang='pt-br'>
 <head>
-    <meta charset=""UTF-8"">
-    <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
     <style>
         body {font - family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -55,27 +55,19 @@ public static class ReadFile
     </style>
 </head>
 <body>
-    <div class=""container"">
-        <div class=""header"">
+    <div class='container'>
+        <div class='header'>
             <h1>Confirmação de Pedido</h1>
         </div>
-        <div class=""content"">
-            <h1>Olá [Nome do Cliente],</h1>
-            <p>Seu pedido #[Número do Pedido] foi criado com sucesso! Abaixo estão os detalhes do seu pedido:</p>
-            <p><strong>Data do Pedido:</strong> [Data do Pedido]</p>
-            <p><strong>Itens do Pedido:</strong></p>
-            <ul>
-                <li>Item 1 - Quantidade: [Quantidade] - Preço: [Preço]</li>
-                <li>Item 2 - Quantidade: [Quantidade] - Preço: [Preço]</li>
-                <!-- Adicione mais itens conforme necessário -->
-            </ul>
-            <p><strong>Total do Pedido:</strong> [Total do Pedido]</p>
-            <p>Você pode acompanhar o status do seu pedido clicando no link abaixo:</p>
-            <a href=""[Link de Rastreamento]"" class=""button"">Acompanhar Pedido</a>
+        <div class='content'>
+            <h1>Olá " + user.NomeCompleto + @",</h1>
+            <p>Seu pedido foi criado com sucesso! Abaixo estão os detalhes do seu pedido:</p>
+            <p>Você pode acompanhar o status do seu pedido clicando no link abaixo e indo na área de pedidos no seu usuário:</p>
+            <a href='http://localhost:3000/' class='button'>Acompanhar Pedido</a>
             <p>Se você tiver alguma dúvida ou precisar de assistência, por favor entre em contato com nosso time de suporte.</p>
             <p>Obrigado,<br>Equipe Oh My Dog</p>
         </div>
-        <div class=""footer"">
+        <div class='footer'>
             <p>&copy; 2024 Oh My Dog. Todos os direitos reservados.</p>
         </div>
     </div>
@@ -85,10 +77,10 @@ public static class ReadFile
     public static string ReadTemplateOrderStatusChanged()
     {
         return @"<!DOCTYPE html>
-<html lang=""pt-br"">
+<html lang='pt-br'>
 <head>
-    <meta charset=""UTF-8"">
-    <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -143,13 +135,13 @@ public static class ReadFile
     </style>
 </head>
 <body>
-    <div class=""container"">
-        <div class=""header"">
+    <div class='container'>
+        <div class='header'>
             <h1>Atualização de Status do Pedido</h1>
         </div>
-        <div class=""content"">
+        <div class='content'>
             <h1>Olá [Nome do Cliente],</h1>
-            <p>O status do seu pedido #[Número do Pedido] foi atualizado. Veja os detalhes abaixo:</p>
+            <p>O status do seu pedido foi atualizado. Veja os detalhes abaixo:</p>
             <p><strong>Status Atual:</strong> [Status do Pedido]</p>
             <p><strong>Data do Pedido:</strong> [Data do Pedido]</p>
             <p><strong>Itens do Pedido:</strong></p>
@@ -160,11 +152,11 @@ public static class ReadFile
             </ul>
             <p><strong>Total do Pedido:</strong> [Total do Pedido]</p>
             <p>Você pode acompanhar o status do seu pedido clicando no link abaixo:</p>
-            <a href=""[Link de Rastreamento]"" class=""button"">Acompanhar Pedido</a>
+            <a href='[Link de Rastreamento]' class='button'>Acompanhar Pedido</a>
             <p>Se você tiver alguma dúvida ou precisar de assistência, por favor entre em contato com nosso time de suporte.</p>
             <p>Obrigado,<br>Equipe Oh My Dog</p>
         </div>
-        <div class=""footer"">
+        <div class='footer'>
             <p>&copy; 2024 Oh My Dog. Todos os direitos reservados.</p>
         </div>
     </div>

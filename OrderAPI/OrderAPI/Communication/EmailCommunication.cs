@@ -16,15 +16,15 @@ namespace OrderAPI.Communication
             _httpClient.BaseAddress = new Uri("http://email-api:8080/api/Email/");
         }
 
-        public async Task<bool> OrderCreatedEmail(string email)
+        public async Task<bool> OrderCreatedEmail(User user)
         {
             try
             {
-                var templateEmail = ReadFile.ReadTemplateOrderCreated();
+                var templateEmail = ReadFile.ReadTemplateOrderCreated(user);
                 var requestBody = JsonConvert.SerializeObject(new
                 {
-                    toEmails = email,
-                    subject = "Seu pedido na Oh My Dog foi criado",
+                    toEmails = user.Email,
+                    subject = "Seu pedido da Oh My Dog foi criado",
                     body = templateEmail
                 });
 

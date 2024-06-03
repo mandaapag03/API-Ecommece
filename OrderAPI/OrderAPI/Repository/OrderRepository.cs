@@ -70,7 +70,7 @@ namespace OrderAPI.Repository
                 {
                     var user = await _userCommunication.GetUserData(newOrder.UsuarioId);
                     NullOrEmptyVariable<User>.ThrowIfNull(user, "Não foi possível buscar os dados desse usuário");
-                    await _emailCommunication.OrderCreatedEmail(user.Email);
+                    await _emailCommunication.OrderCreatedEmail(user);
                 }
                 catch { }
 

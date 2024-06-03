@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using EmailAPI.Model;
+using EmailAPI.Services;
 using VerifyNullablesObjects;
 
 namespace EmailAPI.Controllers
