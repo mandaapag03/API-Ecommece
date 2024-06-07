@@ -14,13 +14,17 @@ namespace OrderAPI.Repository
         private readonly DatabaseContext _context;
         private readonly OrderItemRepository _orderItemRepository;
         private readonly PaymentCommunication _paymentCommunication;
+        private readonly EmailCommunication _emailCommunication;
+        private readonly UserCommunication _userCommunication;
 
 
-        public OrderRepository(IHttpClientFactory httpClientFactory) 
+        public OrderRepository(IHttpClientFactory httpClientFactory)
         {
             _context = new DatabaseContext();
             _orderItemRepository = new OrderItemRepository();
             _paymentCommunication = new PaymentCommunication(httpClientFactory);
+            _emailCommunication = new EmailCommunication(httpClientFactory);
+            _userCommunication = new UserCommunication(httpClientFactory);
         }
         public async Task<object> Create(NewOrder newOrder)
         {
@@ -62,6 +66,14 @@ namespace OrderAPI.Repository
 
                 var payment = await _paymentCommunication.CreatePayment(newOrder.UsuarioId, newOrder.FormaPagamentoId, newOrder.Qtd_parecelas, newOrder.Total, order.Id);
 
+                try
+                {
+                    var user = await _userCommunication.GetUserData(newOrder.UsuarioId);
+                    NullOrEmptyVariable<User>.ThrowIfNull(user, "Não foi possível buscar os dados desse usuário");
+                    await _emailCommunication.OrderCreatedEmail(user);
+                }
+                catch { }
+
                 return new
                 {
                     order = await Get(lastOrderId),
@@ -81,7 +93,7 @@ namespace OrderAPI.Repository
         public async Task<dynamic> Cancel(int orderId)
         {
             var order = await Get(orderId);
-            order.StatusPedidoId = (int) EOrderStatus.Cancelado;
+            order.StatusPedidoId = (int)EOrderStatus.Cancelado;
 
             try
             {

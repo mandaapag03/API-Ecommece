@@ -1,0 +1,12 @@
+@EmailAPI_HostAddress = http://localhost:5079
+
+POST {{EmailAPI_HostAddress}}/api/Email/SendEmail
+Accept: application/json
+Content-Type: application/json
+
+{
+  "toEmails": "amanda.pagani@aluno.faculdadeimpacta.com.br",
+  "subject": "Teste Docker Oh My Dog",
+  "body": "<h1>Teste Oh My Dog docker<h1><hr/>"
+}
+###

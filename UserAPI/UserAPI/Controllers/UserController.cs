@@ -29,8 +29,21 @@ namespace UserAPI.Controllers
 
         }
 
+        [HttpGet("findById/{id}")]
+        public async Task<ActionResult<User>> FindUserByID(int id)
+        {
+            try
+            {
+                return Ok(await _userRepository.GetById(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet("find/{cpf}")]
-        public async Task<ActionResult<User>> FindUser(string cpf)
+        public async Task<ActionResult<User>> FindUserByCpf(string cpf)
         {
             try
             {
