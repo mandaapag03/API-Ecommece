@@ -17,8 +17,8 @@ Content-Type: application/json
 
 {
   "cpf": "12345678912",
-  "nomeCompleto": "Clébio Machado",
-  "email": "string@email.com",
+  "nomeCompleto": "Amanda Pagani Lima",
+  "email": "amanda.pagani@aluno.faculdadeimpacta.com.br",
   "senha": "12345678",
   "telefone": "11996853256",
   "isActive": true,
@@ -33,7 +33,7 @@ Content-Type: application/json
 
 {
   "cpf": "12345678912",
-  "nomeCompleto": "Clébio Silva Machado Souza",
+  "nomeCompleto": "Amanda Pagani Lima",
   "email": "amanda.pagani@aluno.faculdadeimpacta.com.br",
   "senha": "12345678",
   "telefone": "11996853256",
