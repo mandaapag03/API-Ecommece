@@ -77,11 +77,10 @@ services:
       - omd-network
 
   EmailAPI:
-    environment:
-      - ADM__EMAIL=${ADM__EMAIL}
-      - EMAIL__PASSWORD=${EMAIL__PASSWORD}
     build: ./EmailAPI
     image: omd-email-api
+    env_file:
+      - ./EmailAPI/.env
     container_name: email-api
     volumes:
       - ./EmailAPI/system/OhMyDogAPI:/var/lib/omdapi
